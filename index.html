@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AZXION | Onboarding</title>
+  <meta name="description" content="Panel de onboarding para clientes de AZXION - Sistemas Cuánticos de I.A.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Grid Overlay -->
+  <div class="scanlines"></div>
+
+  <!-- Top System Bar -->
+  <header class="system-bar">
+    <div class="system-bar__left">
+      <span class="logo-bracket">[</span>
+      <span class="logo-text">::</span>
+      <span class="logo-bracket">]</span>
+      <span class="logo-name">AZXION</span>
+      <span class="logo-tagline">/SYS.ONBOARDING/</span>
+    </div>
+    <div class="system-bar__right">
+      <span class="status-indicator"></span>
+      <span class="status-text">SISTEMA ACTIVO</span>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="onboarding-container">
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill" style="width: 33%"></div>
+      </div>
+      <div class="progress-steps">
+        <div class="progress-step active" data-step="1">
+          <div class="step-node"><span class="step-number">01</span></div>
+          <span class="step-label">BIENVENIDA</span>
+        </div>
+        <div class="progress-step" data-step="2">
+          <div class="step-node"><span class="step-number">02</span></div>
+          <span class="step-label">VIDEO</span>
+        </div>
+        <div class="progress-step" data-step="3">
+          <div class="step-node"><span class="step-number">03</span></div>
+          <span class="step-label">PRÓXIMOS_PASOS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 1: Bienvenida -->
+    <section class="step-panel active" id="step1">
+      <div class="step-header">
+        <div class="step-phase">[PHASE_01]</div>
+        <h1 class="step-title">BIENVENIDA_</h1>
+        <div class="step-subtitle">// Inicialización de protocolo de onboarding</div>
+      </div>
+      <div class="step-content">
+        <div class="terminal-block">
+          <div class="terminal-header">
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-title">sys.welcome</span>
+          </div>
+          <div class="terminal-body">
+            <p class="terminal-line" data-prefix=">>">Bienvenido al ecosistema <span class="highlight">AZXION</span>.</p>
+            <p class="terminal-line" data-prefix=">>">Estamos emocionados de iniciar este proceso contigo.</p>
+            <p class="terminal-line" data-prefix=">>">A partir de ahora, tu negocio tendrá acceso a nuestra <span class="highlight">infraestructura de conversión con I.A.</span></p>
+            <p class="terminal-line" data-prefix=">>">Este panel te guiará a través del proceso de onboarding.</p>
+            <p class="terminal-line" data-prefix="sys">Protocolo de sincronización iniciado...</p>
+          </div>
+        </div>
+      </div>
+      <div class="step-actions">
+        <div></div>
+        <button class="btn-primary" onclick="goToStep(2)">
+          <span class="btn-bracket">[</span>
+          INICIAR_SECUENCIA
+          <span class="btn-bracket">]</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 2: Video Mensaje -->
+    <section class="step-panel" id="step2">
+      <div class="step-header">
+        <div class="step-phase">[PHASE_02]</div>
+        <h1 class="step-title">VIDEO_MENSAJE</h1>
+        <div class="step-subtitle">// Transmisión de protocolo de implementación</div>
+      </div>
+      <div class="step-content">
+        <div class="video-frame">
+          <div class="video-wrapper">
+            <iframe src="https://www.loom.com/embed/9e4ec37f439942f094d8e023d75b5a02" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="step-actions">
+        <button class="btn-secondary" onclick="goToStep(1)">
+          <span class="btn-arrow">←</span>
+          ANTERIOR
+        </button>
+        <button class="btn-primary" onclick="goToStep(3)">
+          <span class="btn-bracket">[</span>
+          CONTINUAR
+          <span class="btn-bracket">]</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 3: Próximos Pasos -->
+    <section class="step-panel" id="step3">
+      <div class="step-header">
+        <div class="step-phase">[PHASE_03]</div>
+        <h1 class="step-title">PRÓXIMOS_PASOS</h1>
+        <div class="step-subtitle">// Secuencia de implementación</div>
+      </div>
+      <div class="step-content">
+        <div class="pasos-list">
+          <div class="paso-item">
+            <div class="paso-number">01</div>
+            <div class="paso-line"></div>
+            <div class="paso-text">Crearemos tu grupo privado de implementación</div>
+          </div>
+          <div class="paso-item">
+            <div class="paso-number">02</div>
+            <div class="paso-line"></div>
+            <div class="paso-text">Recibirás acceso al portal</div>
+          </div>
+          <div class="paso-item">
+            <div class="paso-number">03</div>
+            <div class="paso-line"></div>
+            <div class="paso-text">Firmaremos contrato</div>
+          </div>
+          <div class="paso-item">
+            <div class="paso-number">04</div>
+            <div class="paso-line"></div>
+            <div class="paso-text">Completarás onboarding estratégico</div>
+          </div>
+          <div class="paso-item">
+            <div class="paso-number">05</div>
+            <div class="paso-line"></div>
+            <div class="paso-text">Tendremos llamada onboarding</div>
+          </div>
+          <div class="paso-item">
+            <div class="paso-number">06</div>
+            <div class="paso-line"></div>
+            <div class="paso-text">Iniciamos arquitectura y despliegue</div>
+          </div>
+        </div>
+
+        <div class="cta-grid">
+          <div class="form-cta">
+            <p class="form-cta-text">Completa el formulario de onboarding:</p>
+            <a href="https://swug1muysy3.typeform.com/to/iA2xATy5" target="_blank" rel="noopener noreferrer" class="btn-primary btn-large">
+              <span class="btn-bracket">[</span>
+              COMPLETAR_FORMULARIO
+              <span class="btn-bracket">]</span>
+              <span class="btn-arrow">→</span>
+            </a>
+          </div>
+          <div class="form-cta">
+            <p class="form-cta-text">Agenda tu llamada de onboarding:</p>
+            <a href="https://cal.com/libia-zarate-cs7cpd/onboarding" target="_blank" rel="noopener noreferrer" class="btn-primary btn-large btn-cal">
+              <span class="btn-bracket">[</span>
+              AGENDAR_ONBOARDING
+              <span class="btn-bracket">]</span>
+              <span class="btn-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="step-actions">
+        <button class="btn-secondary" onclick="goToStep(2)">
+          <span class="btn-arrow">←</span>
+          ANTERIOR
+        </button>
+        <div></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="system-footer">
+    <div class="footer-content">
+      <span class="footer-logo">[::] AZXION</span>
+      <span class="footer-tagline">Infraestructura de Conversión & IA</span>
+    </div>
+    <div class="footer-encrypted">© 2026 AZXION_SYS_CORE. ALL.RIGHTS.RESERVED.</div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
