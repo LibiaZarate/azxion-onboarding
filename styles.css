@@ -359,6 +359,37 @@ body::after { bottom: 20px; right: 20px; border-width: 0 1px 1px 0; }
 .cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 @media (max-width: 768px) { .cta-grid { grid-template-columns: 1fr; } }
 
+/* ===== WELCOME NOTES (STEP 1) ===== */
+.welcome-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+
+/* ===== VIDEO PENDING ===== */
+.video-pending {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-dim); font-family: var(--font-mono);
+  font-size: 13px; letter-spacing: 3px;
+}
+
+/* ===== FORM EXTRAS ===== */
+.form-hint { font-size: 12px; color: var(--text-dim); line-height: 1.5; margin-bottom: 4px; }
+.form-error {
+  display: flex; gap: 12px; align-items: center; padding: 14px 20px; margin-top: 8px;
+  background: var(--accent-dim); border: 1px solid var(--border-accent);
+  color: var(--accent); font-size: 13px; font-family: var(--font-mono);
+}
+.form-input.input-invalid { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+
+/* ===== PRÓXIMOS PASOS EXTRAS ===== */
+#step3 .pasos-list { margin-top: 32px; margin-bottom: 32px; }
+.paso-text strong { color: var(--text-main); font-weight: 700; }
+.deadline-tag {
+  display: inline-block; margin-top: 6px; padding: 4px 10px;
+  background: var(--accent); color: var(--bg-main);
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 1px;
+}
+.llamada-info { margin-bottom: 32px; }
+.llamada-info .info-card__body p { margin-bottom: 0; }
+
 /* ===== FOOTER ===== */
 .system-footer {
   position: relative; z-index: 2; padding: 4rem 5% 2rem;
@@ -377,6 +408,7 @@ body::after { bottom: 20px; right: 20px; border-width: 0 1px 1px 0; }
   .info-grid { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
   .access-checklist { grid-template-columns: 1fr; }
+  .welcome-notes { grid-template-columns: 1fr; }
   .client-banner__grid { flex-direction: column; align-items: flex-start; }
   .step-title { font-size: 2rem; }
   .system-bar { padding: 12px 16px; }

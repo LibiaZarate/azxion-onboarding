@@ -41,11 +41,11 @@
       <div class="progress-steps">
         <div class="progress-step active" data-step="1">
           <div class="step-node"><span class="step-number">01</span></div>
-          <span class="step-label">BIENVENIDA</span>
+          <span class="step-label">VIDEO_BIENVENIDA</span>
         </div>
         <div class="progress-step" data-step="2">
           <div class="step-node"><span class="step-number">02</span></div>
-          <span class="step-label">VIDEO</span>
+          <span class="step-label">FORM_ONBOARDING</span>
         </div>
         <div class="progress-step" data-step="3">
           <div class="step-node"><span class="step-number">03</span></div>
@@ -54,119 +54,211 @@
       </div>
     </div>
 
-    <!-- STEP 1: Bienvenida -->
+    <!-- STEP 1: Video de Bienvenida -->
     <section class="step-panel active" id="step1">
       <div class="step-header">
         <div class="step-phase">[PHASE_01]</div>
-        <h1 class="step-title">BIENVENIDA_</h1>
-        <div class="step-subtitle">// Inicialización de protocolo de onboarding</div>
+        <h1 class="step-title">VIDEO_DE_BIENVENIDA</h1>
+        <div class="step-subtitle">// Bienvenido al ecosistema AZXION — mira este video antes de continuar</div>
       </div>
       <div class="step-content">
-        <div class="terminal-block">
-          <div class="terminal-header">
-            <span class="terminal-dot"></span>
-            <span class="terminal-dot"></span>
-            <span class="terminal-dot"></span>
-            <span class="terminal-title">sys.welcome</span>
+
+        <div class="video-frame">
+          <div class="video-wrapper" data-video="bienvenida"></div>
+        </div>
+
+        <div class="welcome-notes">
+          <div class="info-card">
+            <div class="info-card__header">
+              <span class="info-title">LO_QUE_ES // LO_QUE_NO_ES</span>
+            </div>
+            <div class="info-card__body">
+              <ul class="info-list">
+                <li><span class="list-prefix">SI</span> Un sistema de acompañamiento operativo para llevarte de A a B</li>
+                <li><span class="list-prefix">SI</span> Te va a pedir ejecución, presencia, reportes y feedback</li>
+                <li><span class="list-prefix">NO</span> Una varita mágica que resuelve todo sin que hagas nada</li>
+                <li><span class="list-prefix">NO</span> Contenido pasivo para consumir sin ejecutar</li>
+              </ul>
+            </div>
           </div>
-          <div class="terminal-body">
-            <p class="terminal-line" data-prefix=">>">Bienvenido al ecosistema <span class="highlight">AZXION</span>.</p>
-            <p class="terminal-line" data-prefix=">>">Estamos emocionados de iniciar este proceso contigo.</p>
-            <p class="terminal-line" data-prefix=">>">A partir de ahora, tu negocio tendrá acceso a nuestra <span class="highlight">infraestructura de conversión con I.A.</span></p>
-            <p class="terminal-line" data-prefix=">>">Este panel te guiará a través del proceso de onboarding.</p>
-            <p class="terminal-line" data-prefix="sys">Protocolo de sincronización iniciado...</p>
+          <div class="info-card">
+            <div class="info-card__header">
+              <span class="info-title">CASO_DE_ÉXITO.TRAITS</span>
+            </div>
+            <div class="info-card__body">
+              <p>A los que mejor les va en este proceso tienen estas tres características:</p>
+              <ul class="info-list">
+                <li><span class="list-prefix">01</span> Ejecutan rápido, aunque no esté perfecto</li>
+                <li><span class="list-prefix">02</span> Piden ayuda cuando se traban, no esperan</li>
+                <li><span class="list-prefix">03</span> Confían en el proceso aunque al inicio no vean resultados</li>
+              </ul>
+            </div>
           </div>
         </div>
+
       </div>
       <div class="step-actions">
         <div></div>
         <button class="btn-primary" onclick="goToStep(2)">
           <span class="btn-bracket">[</span>
-          INICIAR_SECUENCIA
+          CONTINUAR_AL_FORM
           <span class="btn-bracket">]</span>
           <span class="btn-arrow">→</span>
         </button>
       </div>
     </section>
 
-    <!-- STEP 2: Video Mensaje -->
+    <!-- STEP 2: Form de Onboarding -->
     <section class="step-panel" id="step2">
       <div class="step-header">
         <div class="step-phase">[PHASE_02]</div>
-        <h1 class="step-title">VIDEO_MENSAJE</h1>
-        <div class="step-subtitle">// Transmisión de protocolo de implementación</div>
+        <h1 class="step-title">FORM_ONBOARDING</h1>
+        <div class="step-subtitle">// Necesitamos conocerte a fondo para diseñar tu proceso — completa todas las preguntas para continuar</div>
       </div>
       <div class="step-content">
-        <div class="video-frame">
-          <div class="video-wrapper">
-            <iframe src="https://www.loom.com/embed/9e4ec37f439942f094d8e023d75b5a02" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+        <form id="onboardingForm" novalidate>
+
+          <div class="form-section">
+            <div class="form-section-title">[01] DATOS_DE_CONTACTO</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="fNombre">NOMBRE_COMPLETO *</label>
+                <input class="form-input" type="text" id="fNombre" name="nombre" required autocomplete="name" placeholder="Tu nombre completo">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="fEmail">EMAIL *</label>
+                <input class="form-input" type="email" id="fEmail" name="email" required autocomplete="email" placeholder="tu@email.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="fTelefono">WHATSAPP / TELÉFONO *</label>
+                <input class="form-input" type="tel" id="fTelefono" name="telefono" required autocomplete="tel" placeholder="+52 ...">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="fNegocio">NOMBRE_DE_TU_NEGOCIO *</label>
+                <input class="form-input" type="text" id="fNegocio" name="negocio" required placeholder="Nombre de tu negocio / proyecto">
+              </div>
+            </div>
           </div>
-        </div>
+
+          <div class="form-section">
+            <div class="form-section-title">[02] DIAGNÓSTICO_INICIAL</div>
+            <div class="form-grid full-width">
+
+              <div class="form-group wide">
+                <label class="form-label" for="fQ1">Q.01 — ¿CUÁL ES TU SITUACIÓN ACTUAL EXACTA HOY? *</label>
+                <p class="form-hint">A qué te dedicas, hace cuánto, qué estás facturando, con cuánto equipo y qué herramientas usas. Aterriza números y contexto.</p>
+                <textarea class="form-input form-textarea" id="fQ1" name="situacion_actual" required placeholder="Hoy me dedico a... facturo... mi equipo es de..."></textarea>
+              </div>
+
+              <div class="form-group wide">
+                <label class="form-label" for="fQ2">Q.02 — ¿QUÉ PROBLEMA ESPECÍFICO TE TRAJO HASTA ACÁ? *</label>
+                <p class="form-hint">El dolor concreto, con nombre y apellido. No "quiero crecer": qué está estancado, qué no funciona, qué te quita el sueño.</p>
+                <textarea class="form-input form-textarea" id="fQ2" name="problema_especifico" required placeholder="Estoy estancado en... no logro..."></textarea>
+              </div>
+
+              <div class="form-group wide">
+                <label class="form-label" for="fQ3">Q.03 — ¿QUÉ INTENTASTE ANTES PARA RESOLVERLO Y POR QUÉ NO FUNCIONÓ? *</label>
+                <p class="form-hint">Cursos, mentorías, agencias, herramientas... lo que sea. Y qué falló en cada caso.</p>
+                <textarea class="form-input form-textarea" id="fQ3" name="intentos_previos" required placeholder="Antes probé... y no funcionó porque..."></textarea>
+              </div>
+
+              <div class="form-group wide">
+                <label class="form-label" for="fQ4">Q.04 — ¿POR QUÉ NOS ELEGISTE A NOSOTROS Y NO A OTRA OPCIÓN? *</label>
+                <p class="form-hint">Sé honesto: qué viste, qué te convenció, y contra qué otras opciones nos comparaste.</p>
+                <textarea class="form-input form-textarea" id="fQ4" name="por_que_azxion" required placeholder="Los elegí porque... también estaba viendo..."></textarea>
+              </div>
+
+              <div class="form-group wide">
+                <label class="form-label" for="fQ5">Q.05 — ¿CUÁL ES TU OBJETIVO CONCRETO A 90 DÍAS? *</label>
+                <p class="form-hint">No a 12 meses, no "a largo plazo". En 90 días: pasar de X a Y. Si aún no lo tienes claro, escríbelo así y lo aterrizamos juntos en la llamada.</p>
+                <textarea class="form-input form-textarea" id="fQ5" name="objetivo_90_dias" required placeholder="En 90 días quiero pasar de... a..."></textarea>
+              </div>
+
+              <div class="form-group wide">
+                <label class="form-label" for="fQ6">Q.06 — ¿QUÉ TENDRÍA QUE PASAR PARA QUE EN 90 DÍAS DIGAS "VALIÓ CADA PESO"? *</label>
+                <p class="form-hint">Tu métrica de éxito real. Puede ser un número, o puede ser otra cosa: tiempo, paz mental, libertad. Dinos cuál es la tuya.</p>
+                <textarea class="form-input form-textarea" id="fQ6" name="metrica_exito" required placeholder="Diría que valió cada peso si..."></textarea>
+              </div>
+
+              <div class="form-group wide">
+                <label class="form-label" for="fQ7">Q.07 — ¿HAY ALGO QUE NO TE ANIMASTE A DECIR TODAVÍA PERO QUE ES IMPORTANTE QUE SEPAMOS?</label>
+                <p class="form-hint">Espacio en blanco. Personal, de negocio, lo que sea. Todo lo que escribas aquí queda entre nosotros y nos ayuda a acompañarte mejor.</p>
+                <textarea class="form-input form-textarea" id="fQ7" name="algo_mas" placeholder="(Opcional)"></textarea>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-error" id="formError" hidden>
+            <span class="list-prefix">!</span> Faltan campos obligatorios por completar. Revisa los campos marcados.
+          </div>
+
+        </form>
       </div>
       <div class="step-actions">
         <button class="btn-secondary" onclick="goToStep(1)">
           <span class="btn-arrow">←</span>
           ANTERIOR
         </button>
-        <button class="btn-primary" onclick="goToStep(3)">
+        <button class="btn-primary" id="submitFormBtn" type="submit" form="onboardingForm">
           <span class="btn-bracket">[</span>
-          CONTINUAR
+          ENVIAR_FORM
           <span class="btn-bracket">]</span>
           <span class="btn-arrow">→</span>
         </button>
       </div>
     </section>
 
-    <!-- STEP 3: Próximos Pasos -->
+    <!-- STEP 3: Video de Próximos Pasos -->
     <section class="step-panel" id="step3">
       <div class="step-header">
         <div class="step-phase">[PHASE_03]</div>
         <h1 class="step-title">PRÓXIMOS_PASOS</h1>
-        <div class="step-subtitle">// Secuencia de implementación</div>
+        <div class="step-subtitle">// Form recibido — esto es exactamente lo que pasa ahora</div>
       </div>
       <div class="step-content">
+
+        <div class="video-frame">
+          <div class="video-wrapper" data-video="proximos-pasos"></div>
+        </div>
+
         <div class="pasos-list">
           <div class="paso-item">
             <div class="paso-number">01</div>
             <div class="paso-line"></div>
-            <div class="paso-text">Crearemos tu grupo privado de implementación</div>
+            <div class="paso-text">Te va a llegar un <strong>email con tus accesos</strong>: el <strong>portal</strong> y tu <strong>Drive específico</strong> donde vamos a estar trabajando. Ese Drive es tuyo, y también lo vas a poder ver dentro del portal.</div>
           </div>
           <div class="paso-item">
             <div class="paso-number">02</div>
             <div class="paso-line"></div>
-            <div class="paso-text">Recibirás acceso al portal</div>
+            <div class="paso-text"><strong>Agenda tu llamada de onboarding</strong> para hablar a detalle de lo que será el proceso. <span class="deadline-tag">IMPORTANTE: agéndala en máximo 48 horas</span></div>
           </div>
           <div class="paso-item">
             <div class="paso-number">03</div>
             <div class="paso-line"></div>
-            <div class="paso-text">Firmaremos contrato</div>
+            <div class="paso-text">Después de la llamada vas a tener el plan claro y arrancamos con la <strong>arquitectura y despliegue</strong> de tu sistema.</div>
           </div>
-          <div class="paso-item">
-            <div class="paso-number">04</div>
-            <div class="paso-line"></div>
-            <div class="paso-text">Completarás onboarding estratégico</div>
+        </div>
+
+        <div class="info-card llamada-info">
+          <div class="info-card__header">
+            <span class="info-title">¿QUÉ_ES_LA_LLAMADA_DE_ONBOARDING?</span>
           </div>
-          <div class="paso-item">
-            <div class="paso-number">05</div>
-            <div class="paso-line"></div>
-            <div class="paso-text">Tendremos llamada onboarding</div>
-          </div>
-          <div class="paso-item">
-            <div class="paso-number">06</div>
-            <div class="paso-line"></div>
-            <div class="paso-text">Iniciamos arquitectura y despliegue</div>
+          <div class="info-card__body">
+            <p>Es la primera llamada del proceso. Ahí vamos a revisar tus respuestas del form, alinear tu objetivo a 90 días y explicarte cómo va a funcionar todo el proceso de trabajo: llamadas, reportes, accesos y comunicación. Sales de esa llamada con el camino completamente claro.</p>
           </div>
         </div>
 
         <div class="form-cta">
-          <p class="form-cta-text">Agenda tu llamada de onboarding:</p>
+          <p class="form-cta-text">Agenda tu llamada de onboarding ahora (máximo 48 horas):</p>
           <a href="https://cal.com/libia-zarate-cs7cpd/onboarding" target="_blank" rel="noopener noreferrer" class="btn-primary btn-large">
             <span class="btn-bracket">[</span>
-            AGENDAR_ONBOARDING
+            AGENDAR_LLAMADA_ONBOARDING
             <span class="btn-bracket">]</span>
             <span class="btn-arrow">→</span>
           </a>
         </div>
+
       </div>
       <div class="step-actions">
         <button class="btn-secondary" onclick="goToStep(2)">
