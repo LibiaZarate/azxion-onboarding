@@ -3,8 +3,8 @@
 // ---- Config ----
 // Links de Loom en formato EMBED: https://www.loom.com/embed/<id>
 // (si un link queda vacío, se muestra un placeholder de "video en preparación")
-const VIDEO_BIENVENIDA_URL = 'https://www.loom.com/embed/9e4ec37f439942f094d8e023d75b5a02';
-const VIDEO_PROXIMOS_PASOS_URL = '';
+const VIDEO_BIENVENIDA_URL = 'https://www.loom.com/embed/dabef44bcc014669992e9aa1d503c256';
+const VIDEO_PROXIMOS_PASOS_URL = 'https://www.loom.com/embed/bf6578094e3d4f13a33168f26b393b5a';
 
 // Opcional: webhook (n8n, Make, etc.) para recibir las respuestas del form como JSON
 const FORM_WEBHOOK_URL = '';
