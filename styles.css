@@ -372,6 +372,9 @@ body::after { bottom: 20px; right: 20px; border-width: 0 1px 1px 0; }
 
 /* ===== FORM EXTRAS ===== */
 .form-hint { font-size: 12px; color: var(--text-dim); line-height: 1.5; margin-bottom: 4px; }
+.form-section-note { font-size: 13px; color: var(--text-light); line-height: 1.6; margin: -8px 0 20px; }
+.form-textarea-xl { min-height: 180px; }
+.form-section .form-grid + .form-grid { margin-top: 16px; }
 .form-error {
   display: flex; gap: 12px; align-items: center; padding: 14px 20px; margin-top: 8px;
   background: var(--accent-dim); border: 1px solid var(--border-accent);

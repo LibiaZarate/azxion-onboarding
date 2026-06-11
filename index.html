@@ -113,10 +113,17 @@
       <div class="step-header">
         <div class="step-phase">[PHASE_02]</div>
         <h1 class="step-title">FORM_ONBOARDING</h1>
-        <div class="step-subtitle">// Necesitamos conocerte a fondo para diseñar tu proceso — completa todas las preguntas para continuar</div>
+        <div class="step-subtitle">// Discovery de implementación — de aquí sale el diseño de tu sistema. Completa los campos obligatorios (*) para continuar</div>
       </div>
       <div class="step-content">
         <form id="onboardingForm" novalidate>
+
+          <div class="access-notice">
+            <span class="notice-icon">◈</span>
+            <div class="notice-content">
+              <p>Este form es profundo <strong>a propósito</strong>: cada respuesta se convierte directamente en el diseño de tu sistema. Toma entre 20 y 30 minutos. <strong>Tu progreso se guarda automáticamente</strong> en este navegador — puedes pausar y volver cuando quieras. Donde no tengas el dato exacto, pon tu estimación honesta: lo afinamos juntos en la llamada de onboarding.</p>
+            </div>
+          </div>
 
           <div class="form-section">
             <div class="form-section-title">[01] DATOS_DE_CONTACTO</div>
@@ -141,51 +148,253 @@
           </div>
 
           <div class="form-section">
-            <div class="form-section-title">[02] DIAGNÓSTICO_INICIAL</div>
+            <div class="form-section-title">[02] POR_QUÉ_NOSOTROS</div>
             <div class="form-grid full-width">
-
               <div class="form-group wide">
-                <label class="form-label" for="fQ1">Q.01 — ¿CUÁL ES TU SITUACIÓN ACTUAL EXACTA HOY? *</label>
-                <p class="form-hint">A qué te dedicas, hace cuánto, qué estás facturando, con cuánto equipo y qué herramientas usas. Aterriza números y contexto.</p>
-                <textarea class="form-input form-textarea" id="fQ1" name="situacion_actual" required placeholder="Hoy me dedico a... facturo... mi equipo es de..."></textarea>
+                <label class="form-label" for="fB0a">¿CÓMO TE ENTERASTE DE NOSOTROS Y DÓNDE NOS VISTE POR PRIMERA VEZ? *</label>
+                <p class="form-hint">Video, reel, post, recomendación, búsqueda, evento... Si hubo una pieza específica que te hizo decir "ellos entienden lo que yo vivo", dinos cuál o pega el link.</p>
+                <textarea class="form-input form-textarea" id="fB0a" name="como_nos_encontraste" required placeholder="Los vi por primera vez en..."></textarea>
               </div>
-
               <div class="form-group wide">
-                <label class="form-label" for="fQ2">Q.02 — ¿QUÉ PROBLEMA ESPECÍFICO TE TRAJO HASTA ACÁ? *</label>
+                <label class="form-label" for="fB0b">¿QUÉ VISTE O ESCUCHASTE QUE TE HIZO DECIDIR? *</label>
+                <p class="form-hint">El momento del "sí". Y también: ¿qué duda silenciosa tenías antes de decidir, y qué la disipó?</p>
+                <textarea class="form-input form-textarea" id="fB0b" name="que_te_hizo_decidir" required placeholder="Decidí cuando... mi duda era... y se disipó porque..."></textarea>
+              </div>
+              <div class="form-group wide">
+                <label class="form-label" for="fB0c">¿QUÉ NOS DIFERENCIÓ DE LA OTRA OPCIÓN QUE ESTABAS CONSIDERANDO? *</label>
+                <p class="form-hint">Si le explicaras a un amigo empresario por qué nos contrataste, ¿qué le dirías?</p>
+                <textarea class="form-input form-textarea" id="fB0c" name="diferenciador" required placeholder="Estaba considerando... y al final me convenció..."></textarea>
+              </div>
+              <div class="form-group wide">
+                <label class="form-label" for="fB0d">¿QUÉ INTENTASTE ANTES PARA RESOLVER ESTO Y POR QUÉ NO FUNCIONÓ? *</label>
+                <p class="form-hint">Cursos, agencias, herramientas, contrataciones... lo que sea. Y qué falló en cada caso.</p>
+                <textarea class="form-input form-textarea" id="fB0d" name="intentos_previos" required placeholder="Antes probé... y no funcionó porque..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">[03] TU_NEGOCIO_Y_OFERTA</div>
+            <div class="form-grid full-width">
+              <div class="form-group wide">
+                <label class="form-label" for="fB1a">¿QUÉ HACE TU NEGOCIO, EN UNA FRASE QUE TU MAMÁ ENTENDERÍA? *</label>
+                <textarea class="form-input form-textarea" id="fB1a" name="negocio_una_frase" required placeholder="Ayudamos a... a lograr... mediante..."></textarea>
+              </div>
+              <div class="form-group wide">
+                <label class="form-label" for="fB1b">COMPLETA: "NO VENDEMOS ______, VENDEMOS ______." *</label>
+                <p class="form-hint">La transformación, no el producto.</p>
+                <input class="form-input" type="text" id="fB1b" name="transformacion" required placeholder='No vendemos..., vendemos...'>
+              </div>
+              <div class="form-group wide">
+                <label class="form-label" for="fB1c">LISTA TODAS TUS LÍNEAS DE PRODUCTO/SERVICIO *</label>
+                <p class="form-hint">Para cada una: precio y, en una palabra, su rol — ¿abre puerta, es la de volumen, la premium o la más rentable?</p>
+                <textarea class="form-input form-textarea" id="fB1c" name="lineas_oferta" required placeholder="1) Servicio X — $... — abre puerta&#10;2) Servicio Y — $... — premium"></textarea>
+              </div>
+            </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="fB1d">MODELO_DE_NEGOCIO *</label>
+                <select class="form-input form-select" id="fB1d" name="modelo_negocio" required>
+                  <option value="">Selecciona...</option>
+                  <option>One-shot (venta única)</option>
+                  <option>Recurrente</option>
+                  <option>Mixto</option>
+                  <option>Suscripción</option>
+                  <option>Comisión</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="fB1e">GEOGRAFÍA_E_IDIOMAS *</label>
+                <input class="form-input" type="text" id="fB1e" name="geografia_idiomas" required placeholder="¿Dónde vendes? ¿En qué idiomas atiendes?">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">[04] A_QUIÉN_LE_VENDES</div>
+            <div class="form-grid full-width">
+              <div class="form-group wide">
+                <label class="form-label" for="fB2a">TU CLIENTE IDEAL, EN UNA FRASE CONCRETA *</label>
+                <p class="form-hint">No "empresas medianas" — algo específico que lo pinte de cuerpo entero.</p>
+                <textarea class="form-input form-textarea" id="fB2a" name="cliente_ideal" required placeholder="Mi cliente ideal es..."></textarea>
+              </div>
+              <div class="form-group wide">
+                <label class="form-label" for="fB2b">LOS PERFILES/SEGMENTOS QUE TE COMPRAN Y QUÉ BUSCA CADA UNO *</label>
+                <p class="form-hint">Una línea por perfil. Si vendes a empresas: ¿quién decide, quién influye, quién paga y quién usa? (a veces son cuatro personas distintas).</p>
+                <textarea class="form-input form-textarea" id="fB2b" name="segmentos" required placeholder="Perfil 1: ... busca...&#10;Perfil 2: ... busca..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">[05] REGLAS_QUE_EL_AGENTE_NO_PUEDE_ROMPER</div>
+            <div class="form-grid full-width">
+              <div class="form-group wide">
+                <label class="form-label" for="fB4a">¿CÓMO SE COTIZA EN TU NEGOCIO? *</label>
+                <p class="form-hint">Precios por línea o situación, mínimos, tabla de descuentos, y quién autoriza un descuento fuera de tabla.</p>
+                <textarea class="form-input form-textarea" id="fB4a" name="cotizacion_precios" required placeholder="Se cotiza así... los descuentos los autoriza..."></textarea>
+              </div>
+              <div class="form-group wide">
+                <label class="form-label" for="fB4b">ALCANCE Y PAGOS *</label>
+                <p class="form-hint">Zonas o alcance de servicio (y qué pasa con quien está fuera). Pagos: % de anticipo, formas de pago, política de cancelación/reembolso.</p>
+                <textarea class="form-input form-textarea" id="fB4b" name="alcance_pagos" required placeholder="Atendemos en... el anticipo es... aceptamos..."></textarea>
+              </div>
+              <div class="form-group wide">
+                <label class="form-label" for="fB4c">¿QUÉ PUEDE PROMETER EL AGENTE — Y QUÉ NO? *</label>
+                <p class="form-hint">En fechas, precio y disponibilidad. Y ¿cómo se valida stock/disponibilidad antes de prometer algo?</p>
+                <textarea class="form-input form-textarea" id="fB4c" name="promesas_limites" required placeholder="Puede prometer... nunca debe prometer... la disponibilidad se valida..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">[06] LA_CONVERSACIÓN</div>
+            <div class="form-grid full-width">
+              <div class="form-group wide">
+                <label class="form-label" for="fB5a">LAS 10–15 PREGUNTAS QUE MÁS TE REPITEN LOS CLIENTES, CON TU RESPUESTA DE HOY *</label>
+                <p class="form-hint">Si tienes textos que copias y pegas para responder, pégalos tal cual. Este bloque es directamente el cerebro del agente.</p>
+                <textarea class="form-input form-textarea form-textarea-xl" id="fB5a" name="faqs" required placeholder="P: ¿...?&#10;R: ...&#10;&#10;P: ¿...?&#10;R: ..."></textarea>
+              </div>
+              <div class="form-group wide">
+                <label class="form-label" for="fB5b">MATERIALES PARA ENVIAR</label>
+                <p class="form-hint">Videos, casos de éxito, catálogo, demos, mockups... pega los links de los activos con los que ya cuentas.</p>
+                <textarea class="form-input form-textarea" id="fB5b" name="materiales" placeholder="(Opcional) Catálogo: https://... &#10;Video de caso: https://..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">[07] ALCANCE_Y_LÍMITES_DEL_AGENTE</div>
+            <div class="form-grid full-width">
+              <div class="form-group wide">
+                <label class="form-label" for="fB7a">¿QUÉ PUEDE HACER EL AGENTE? *</label>
+                <p class="form-hint">Responde punto por punto: ¿da precios (todos, algunos, ninguno hasta calificar)? ¿Agenda directo o "un humano te contacta"? ¿Puede mandar link de pago y en qué momento? ¿Confirma disponibilidad en tiempo real? ¿Recomienda entre opciones o solo informa?</p>
+                <textarea class="form-input form-textarea" id="fB7a" name="alcance_agente" required placeholder="Precios: ...&#10;Agenda: ...&#10;Link de pago: ...&#10;Disponibilidad: ...&#10;Recomienda: ..."></textarea>
+              </div>
+              <div class="form-group wide">
+                <label class="form-label" for="fB7b">ESCALAMIENTO_A_HUMANO *</label>
+                <p class="form-hint">¿Cuántos turnos máximo antes de escalar? ¿Qué tipo de conversación SIEMPRE va a humano? Si manejas datos delicados (médicos, financieros): ¿qué NUNCA puede pedir por chat?</p>
+                <textarea class="form-input form-textarea" id="fB7b" name="escalamiento" required placeholder="Escala a humano cuando..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">[08] TU_PROCESO_COMERCIAL_HOY</div>
+            <div class="form-grid full-width">
+              <div class="form-group wide">
+                <label class="form-label" for="fB8a">EL VIAJE DEL LEAD, DE LA ENTRADA AL PAGO, PASO POR PASO *</label>
+                <p class="form-hint">Si ya tienes un diagrama o sheet de tu proceso, pega el link y listo.</p>
+                <textarea class="form-input form-textarea" id="fB8a" name="viaje_lead" required placeholder="1) El lead entra por...&#10;2) Luego...&#10;3) ..."></textarea>
+              </div>
+              <div class="form-group wide">
+                <label class="form-label" for="fB8b">¿QUIÉN TOCA AL LEAD EN CADA ETAPA Y DÓNDE VIVE SU INFORMACIÓN HOY? *</label>
+                <p class="form-hint">Personas por etapa, y en cuántos lugares distintos está la info del lead (WhatsApp, sheet, CRM, cabeza de alguien...).</p>
+                <textarea class="form-input form-textarea" id="fB8b" name="quien_toca_lead" required placeholder="Primero lo atiende... la info vive en..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">[09] PUNTO_A — TU_BASELINE</div>
+            <p class="form-section-note">Estimaciones honestas. Nadie tiene estos números exactos — los reconstruimos juntos con tu CRM/sheet en mano durante la llamada. Pero tu mejor estimación hoy es el punto de partida contra el que vamos a medir toda la mejora.</p>
+            <div class="form-grid full-width">
+              <div class="form-group wide">
+                <label class="form-label" for="fB9a">¿QUÉ % DE LEADS SE PIERDE POR FALTA DE SEGUIMIENTO VS. POR UN "NO" REAL? *</label>
+                <p class="form-hint">El número que justifica todo el sistema.</p>
+                <textarea class="form-input form-textarea" id="fB9a" name="perdida_seguimiento" required placeholder="Calculo que el ...% se pierde porque nadie le dio seguimiento..."></textarea>
+              </div>
+              <div class="form-group wide">
+                <label class="form-label" for="fB10a">LEADS POR MES — TOTAL Y POR CANAL *</label>
+                <textarea class="form-input form-textarea" id="fB10a" name="leads_mes" required placeholder="Total: ~... al mes. Por WhatsApp: ... Por Instagram: ... Por referidos: ..."></textarea>
+              </div>
+              <div class="form-group wide">
+                <label class="form-label" for="fB10b">TIEMPO DE PRIMERA RESPUESTA HOY *</label>
+                <p class="form-hint">Caso típico y peor caso. ¿Quién contesta? ¿Qué pasa con los leads que llegan fuera de horario?</p>
+                <textarea class="form-input form-textarea" id="fB10b" name="tiempo_respuesta" required placeholder="Normalmente contestamos en... el peor caso es... fuera de horario..."></textarea>
+              </div>
+              <div class="form-group wide">
+                <label class="form-label" for="fB10c">CONVERSIÓN Y CICLO DE VENTA</label>
+                <p class="form-hint">De cada 10 leads, ¿cuántos llegan a conversación, a cotización, a cierre? ¿Cuántos días tarda una venta promedio? ¿Cuántos leads "zombi" (abiertos +60 días sin movimiento) tienes?</p>
+                <textarea class="form-input form-textarea" id="fB10c" name="conversion_ciclo" placeholder="(Opcional si no lo sabes aún) De 10 leads... la venta tarda... días"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">[10] OBJETIVO_90_DÍAS</div>
+            <div class="form-grid full-width">
+              <div class="form-group wide">
+                <label class="form-label" for="fB11a">¿QUÉ PROBLEMA ESPECÍFICO TE TRAJO HASTA ACÁ? *</label>
                 <p class="form-hint">El dolor concreto, con nombre y apellido. No "quiero crecer": qué está estancado, qué no funciona, qué te quita el sueño.</p>
-                <textarea class="form-input form-textarea" id="fQ2" name="problema_especifico" required placeholder="Estoy estancado en... no logro..."></textarea>
+                <textarea class="form-input form-textarea" id="fB11a" name="problema_especifico" required placeholder="Estoy estancado en... no logro..."></textarea>
               </div>
-
               <div class="form-group wide">
-                <label class="form-label" for="fQ3">Q.03 — ¿QUÉ INTENTASTE ANTES PARA RESOLVERLO Y POR QUÉ NO FUNCIONÓ? *</label>
-                <p class="form-hint">Cursos, mentorías, agencias, herramientas... lo que sea. Y qué falló en cada caso.</p>
-                <textarea class="form-input form-textarea" id="fQ3" name="intentos_previos" required placeholder="Antes probé... y no funcionó porque..."></textarea>
+                <label class="form-label" for="fB11b">DEFINICIÓN DE ÉXITO A 90 DÍAS: ¿QUÉ NÚMERO ESPECÍFICO TIENE QUE CAMBIAR PARA DECIR "FUNCIONÓ"? *</label>
+                <p class="form-hint">En 90 días: pasar de X a Y. Si aún no lo tienes claro, escríbelo así y lo aterrizamos juntos en la llamada.</p>
+                <textarea class="form-input form-textarea" id="fB11b" name="objetivo_90_dias" required placeholder="En 90 días quiero pasar de... a..."></textarea>
               </div>
-
               <div class="form-group wide">
-                <label class="form-label" for="fQ4">Q.04 — ¿POR QUÉ NOS ELEGISTE A NOSOTROS Y NO A OTRA OPCIÓN? *</label>
-                <p class="form-hint">Sé honesto: qué viste, qué te convenció, y contra qué otras opciones nos comparaste.</p>
-                <textarea class="form-input form-textarea" id="fQ4" name="por_que_azxion" required placeholder="Los elegí porque... también estaba viendo..."></textarea>
-              </div>
-
-              <div class="form-group wide">
-                <label class="form-label" for="fQ5">Q.05 — ¿CUÁL ES TU OBJETIVO CONCRETO A 90 DÍAS? *</label>
-                <p class="form-hint">No a 12 meses, no "a largo plazo". En 90 días: pasar de X a Y. Si aún no lo tienes claro, escríbelo así y lo aterrizamos juntos en la llamada.</p>
-                <textarea class="form-input form-textarea" id="fQ5" name="objetivo_90_dias" required placeholder="En 90 días quiero pasar de... a..."></textarea>
-              </div>
-
-              <div class="form-group wide">
-                <label class="form-label" for="fQ6">Q.06 — ¿QUÉ TENDRÍA QUE PASAR PARA QUE EN 90 DÍAS DIGAS "VALIÓ CADA PESO"? *</label>
+                <label class="form-label" for="fB11c">¿QUÉ TENDRÍA QUE PASAR PARA QUE EN 90 DÍAS DIGAS "VALIÓ CADA PESO"? *</label>
                 <p class="form-hint">Tu métrica de éxito real. Puede ser un número, o puede ser otra cosa: tiempo, paz mental, libertad. Dinos cuál es la tuya.</p>
-                <textarea class="form-input form-textarea" id="fQ6" name="metrica_exito" required placeholder="Diría que valió cada peso si..."></textarea>
+                <textarea class="form-input form-textarea" id="fB11c" name="metrica_exito" required placeholder="Diría que valió cada peso si..."></textarea>
               </div>
-
               <div class="form-group wide">
-                <label class="form-label" for="fQ7">Q.07 — ¿HAY ALGO QUE NO TE ANIMASTE A DECIR TODAVÍA PERO QUE ES IMPORTANTE QUE SEPAMOS?</label>
-                <p class="form-hint">Espacio en blanco. Personal, de negocio, lo que sea. Todo lo que escribas aquí queda entre nosotros y nos ayuda a acompañarte mejor.</p>
-                <textarea class="form-input form-textarea" id="fQ7" name="algo_mas" placeholder="(Opcional)"></textarea>
+                <label class="form-label" for="fB11d">¿QUÉ PREGUNTA DE TU NEGOCIO HOY NO PUEDES CONTESTAR POR FALTA DE DATO?</label>
+                <textarea class="form-input form-textarea" id="fB11d" name="pregunta_sin_dato" placeholder='(Opcional) Por ejemplo: "no sé cuántos leads pierdo al mes" o "no sé qué canal me da los mejores clientes"'></textarea>
               </div>
+            </div>
+          </div>
 
+          <div class="form-section">
+            <div class="form-section-title">[11] TU_DASHBOARD</div>
+            <div class="form-grid full-width">
+              <div class="form-group wide">
+                <label class="form-label" for="fB12a">¿CÓMO LO VAS A USAR? *</label>
+                <p class="form-hint">¿Dónde, cuándo y desde qué dispositivo lo abrirías? ¿Vistazo de 10 segundos o análisis de 10 minutos? ¿Prefieres tendencias (línea en el tiempo) o estados (foto del momento)? ¿Quién más lo va a ver?</p>
+                <textarea class="form-input form-textarea" id="fB12a" name="dashboard_uso" required placeholder="Lo abriría desde... cada... para..."></textarea>
+              </div>
+              <div class="form-group wide">
+                <label class="form-label" for="fB12b">LAS 3–5 SECCIONES QUE DEBERÍA TENER</label>
+                <textarea class="form-input form-textarea" id="fB12b" name="dashboard_secciones" placeholder="(Opcional) 1) ... 2) ... 3) ..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">[12] STACK_Y_OPERACIÓN</div>
+            <div class="form-grid full-width">
+              <div class="form-group wide">
+                <label class="form-label" for="fB13a">TUS HERRAMIENTAS HOY, POR FUNCIÓN *</label>
+                <p class="form-hint">CRM, tipo de cuenta de WhatsApp (personal / Business / API), calendario, almacenamiento, reportes. ¿Qué integraciones ya existen? ¿Qué herramienta detestas pero sigues usando?</p>
+                <textarea class="form-input form-textarea" id="fB13a" name="stack" required placeholder="CRM: ... WhatsApp: ... Calendario: ..."></textarea>
+              </div>
+              <div class="form-group wide">
+                <label class="form-label" for="fB13b">TU EQUIPO Y LA OPERACIÓN *</label>
+                <p class="form-hint">Nivel técnico del equipo y horas/semana que pueden dedicar a aprender. ¿Quién aprueba la implementación, quién la opera en el día a día, y quién es el campeón interno que va a empujar esto?</p>
+                <textarea class="form-input form-textarea" id="fB13b" name="equipo_operacion" required placeholder="Mi equipo es... lo va a operar... el campeón es..."></textarea>
+              </div>
+              <div class="form-group wide">
+                <label class="form-label" for="fB13c">¿QUÉ HARÍA QUE TU EQUIPO NO USE ESTO, AUNQUE FUNCIONE? *</label>
+                <p class="form-hint">Sé brutalmente honesto. Este es el riesgo real de cualquier implementación, y conocerlo desde hoy nos deja diseñarlo a prueba de tu operación.</p>
+                <textarea class="form-input form-textarea" id="fB13c" name="riesgo_adopcion" required placeholder="Dejarían de usarlo si..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">[13] CIERRE</div>
+            <div class="form-grid full-width">
+              <div class="form-group wide">
+                <label class="form-label" for="fB14a">¿QUÉ NO TE PREGUNTAMOS QUE CREES IMPORTANTE? ¿ALGO QUE NO TE HAS ANIMADO A DECIR?</label>
+                <p class="form-hint">Espacio en blanco. Personal, de negocio, algo que tu operación hace día a día y sientes que se nos escapa. Todo lo que escribas aquí queda entre nosotros.</p>
+                <textarea class="form-input form-textarea" id="fB14a" name="algo_mas" placeholder="(Opcional)"></textarea>
+              </div>
+              <div class="form-group wide">
+                <label class="form-label" for="fB14b">[OPCIONAL] LOOM ATENDIENDO UN LEAD REAL</label>
+                <p class="form-hint">Si quieres darnos oro: grábate en Loom atendiendo un lead real de principio a fin, compartiendo pantalla y pensando en voz alta. Captura lo que haces por instinto y no aparece en ninguna pregunta. Pega el link aquí.</p>
+                <input class="form-input" type="url" id="fB14b" name="loom_lead" placeholder="https://www.loom.com/share/...">
+              </div>
             </div>
           </div>
 

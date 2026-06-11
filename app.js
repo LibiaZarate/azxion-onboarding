@@ -71,6 +71,30 @@ function showStep(step) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// ---- Form draft (autoguardado en el navegador) ----
+const FORM_DRAFT_KEY = 'azxion_form_draft';
+
+function saveDraft() {
+  const form = document.getElementById('onboardingForm');
+  const data = Object.fromEntries(new FormData(form).entries());
+  localStorage.setItem(FORM_DRAFT_KEY, JSON.stringify(data));
+}
+
+function restoreDraft() {
+  let draft;
+  try {
+    draft = JSON.parse(localStorage.getItem(FORM_DRAFT_KEY) || 'null');
+  } catch (e) {
+    return;
+  }
+  if (!draft) return;
+  const form = document.getElementById('onboardingForm');
+  Object.entries(draft).forEach(([name, value]) => {
+    const field = form.elements[name];
+    if (field && !(field instanceof RadioNodeList)) field.value = value;
+  });
+}
+
 // ---- Form ----
 function handleFormSubmit(event) {
   event.preventDefault();
@@ -107,10 +131,14 @@ function handleFormSubmit(event) {
 
   formCompleted = true;
   localStorage.setItem('azxion_form_completed', 'true');
+  localStorage.removeItem(FORM_DRAFT_KEY);
   showStep(3);
 }
 
 // ---- Init ----
 loadVideos();
-document.getElementById('onboardingForm').addEventListener('submit', handleFormSubmit);
+restoreDraft();
+const onboardingForm = document.getElementById('onboardingForm');
+onboardingForm.addEventListener('submit', handleFormSubmit);
+onboardingForm.addEventListener('input', saveDraft);
 showStep(1);
