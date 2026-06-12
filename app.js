@@ -68,6 +68,11 @@ function showStep(step) {
 
   document.getElementById('progressFill').style.width = ((step / totalSteps) * 100) + '%';
   currentStep = step;
+
+  if (step === 3 && formCompleted) {
+    document.getElementById('sentConfirm').hidden = false;
+  }
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -96,20 +101,58 @@ function restoreDraft() {
 }
 
 // ---- Form ----
-function handleFormSubmit(event) {
+function setSubmitButton(state) {
+  const btn = document.getElementById('submitFormBtn');
+  if (state === 'sending') {
+    btn.disabled = true;
+    btn.innerHTML = '<span class="btn-bracket">[</span> ENVIANDO... <span class="btn-bracket">]</span>';
+  } else if (state === 'sent') {
+    btn.disabled = true;
+    btn.innerHTML = '<span class="sent-check">✓</span> FORM_ENVIADO';
+  } else if (state === 'retry') {
+    btn.disabled = false;
+    btn.innerHTML = '<span class="btn-bracket">[</span> REINTENTAR_ENVÍO <span class="btn-bracket">]</span> <span class="btn-arrow">→</span>';
+  } else {
+    btn.disabled = false;
+    btn.innerHTML = '<span class="btn-bracket">[</span> ENVIAR_FORM <span class="btn-bracket">]</span> <span class="btn-arrow">→</span>';
+  }
+}
+
+function clearFieldError(field) {
+  field.classList.remove('input-invalid');
+  const group = field.closest('.form-group');
+  if (group) {
+    const msg = group.querySelector('.field-error');
+    if (msg) msg.remove();
+  }
+}
+
+function markFieldInvalid(field) {
+  field.classList.add('input-invalid');
+  const group = field.closest('.form-group');
+  if (group && !group.querySelector('.field-error')) {
+    const msg = document.createElement('p');
+    msg.className = 'field-error';
+    msg.textContent = '✗ Esta respuesta es obligatoria — es parte de lo que se nos envía. Llénala bien.';
+    group.appendChild(msg);
+  }
+}
+
+async function handleFormSubmit(event) {
   event.preventDefault();
   const form = document.getElementById('onboardingForm');
   const error = document.getElementById('formError');
+  const sent = document.getElementById('formSent');
 
-  form.querySelectorAll('.form-input').forEach(i => i.classList.remove('input-invalid'));
+  form.querySelectorAll('.form-input').forEach(clearFieldError);
 
   if (!form.checkValidity()) {
     let firstInvalid = null;
     form.querySelectorAll(':invalid').forEach(field => {
-      field.classList.add('input-invalid');
+      markFieldInvalid(field);
       if (!firstInvalid) firstInvalid = field;
     });
-    error.textContent = 'Faltan campos obligatorios por completar. Revisa los campos marcados.';
+    error.innerHTML = '<span class="list-prefix">!</span> Faltan respuestas obligatorias — están marcadas en rojo. Solo el link de Loom del final es opcional.';
     error.hidden = false;
     if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
@@ -122,17 +165,34 @@ function handleFormSubmit(event) {
   localStorage.setItem('azxion_form_data', JSON.stringify(data));
 
   if (FORM_WEBHOOK_URL) {
-    fetch(FORM_WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    }).catch(err => console.error('Error enviando form al webhook:', err));
+    setSubmitButton('sending');
+    try {
+      const res = await fetch(FORM_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+    } catch (err) {
+      console.error('Error enviando form al webhook:', err);
+      setSubmitButton('retry');
+      error.innerHTML = '<span class="list-prefix">!</span> No pudimos enviar tus respuestas (error de conexión). No te preocupes: están guardadas en este navegador. Intenta de nuevo en unos segundos.';
+      error.hidden = false;
+      error.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
   }
+
+  // Envío confirmado
+  setSubmitButton('sent');
+  sent.hidden = false;
+  sent.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
   formCompleted = true;
   localStorage.setItem('azxion_form_completed', 'true');
   localStorage.removeItem(FORM_DRAFT_KEY);
-  showStep(3);
+
+  setTimeout(() => showStep(3), 1600);
 }
 
 // ---- Init ----
@@ -140,5 +200,8 @@ loadVideos();
 restoreDraft();
 const onboardingForm = document.getElementById('onboardingForm');
 onboardingForm.addEventListener('submit', handleFormSubmit);
-onboardingForm.addEventListener('input', saveDraft);
+onboardingForm.addEventListener('input', (e) => {
+  saveDraft();
+  if (e.target.classList && e.target.classList.contains('form-input')) clearFieldError(e.target);
+});
 showStep(1);

@@ -381,6 +381,15 @@ body::after { bottom: 20px; right: 20px; border-width: 0 1px 1px 0; }
   color: var(--accent); font-size: 13px; font-family: var(--font-mono);
 }
 .form-input.input-invalid { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+.field-error { font-size: 12px; color: var(--accent); font-family: var(--font-mono); margin-top: 4px; }
+.form-sent {
+  display: flex; gap: 12px; align-items: center; padding: 16px 20px; margin-top: 16px;
+  background: rgba(76,140,76,0.1); border: 1px solid rgba(76,140,76,0.4);
+  color: #3d7a3d; font-size: 13px; font-weight: 700; font-family: var(--font-mono); letter-spacing: 1px;
+}
+.sent-check { font-size: 16px; font-weight: 700; }
+#sentConfirm { margin-top: 0; margin-bottom: 24px; }
+.btn-primary:disabled { opacity: 0.7; cursor: wait; transform: none; box-shadow: none; }
 
 /* ===== PRÓXIMOS PASOS EXTRAS ===== */
 #step3 .pasos-list { margin-top: 32px; margin-bottom: 32px; }
