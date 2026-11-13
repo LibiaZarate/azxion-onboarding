@@ -6,8 +6,9 @@
 const VIDEO_BIENVENIDA_URL = 'https://www.loom.com/embed/dabef44bcc014669992e9aa1d503c256';
 const VIDEO_PROXIMOS_PASOS_URL = 'https://www.loom.com/embed/bf6578094e3d4f13a33168f26b393b5a';
 
-// Opcional: webhook (n8n, Make, etc.) para recibir las respuestas del form como JSON
-const FORM_WEBHOOK_URL = 'https://n8n-azxion.slmipf.easypanel.host/webhook/33413fba-fb99-4bde-90bc-a55a545dc6db';
+// URL del Apps Script (Implementar > Aplicación web) que recibe las respuestas
+// y las manda a tu Gmail. Ver apps-script/README.md
+const FORM_WEBHOOK_URL = '';
 
 let currentStep = 1;
 const totalSteps = 3;
@@ -164,23 +165,25 @@ async function handleFormSubmit(event) {
   data.fecha_envio = new Date().toISOString();
   localStorage.setItem('azxion_form_data', JSON.stringify(data));
 
-  if (FORM_WEBHOOK_URL) {
-    setSubmitButton('sending');
-    try {
-      const res = await fetch(FORM_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-    } catch (err) {
-      console.error('Error enviando form al webhook:', err);
-      setSubmitButton('retry');
-      error.innerHTML = '<span class="list-prefix">!</span> No pudimos enviar tus respuestas (error de conexión). No te preocupes: están guardadas en este navegador. Intenta de nuevo en unos segundos.';
-      error.hidden = false;
-      error.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
+  setSubmitButton('sending');
+  try {
+    if (!FORM_WEBHOOK_URL) throw new Error('FORM_WEBHOOK_URL sin configurar');
+    // text/plain evita el preflight CORS, que Apps Script no responde
+    const res = await fetch(FORM_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const result = await res.json();
+    if (!result.ok) throw new Error('Apps Script: ' + result.error);
+  } catch (err) {
+    console.error('Error enviando form:', err);
+    setSubmitButton('retry');
+    error.innerHTML = '<span class="list-prefix">!</span> No pudimos enviar tus respuestas (error de conexión). No te preocupes: están guardadas en este navegador. Intenta de nuevo en unos segundos.';
+    error.hidden = false;
+    error.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
   }
 
   // Envío confirmado
