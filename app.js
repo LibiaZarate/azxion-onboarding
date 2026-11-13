@@ -8,7 +8,7 @@ const VIDEO_PROXIMOS_PASOS_URL = 'https://www.loom.com/embed/bf6578094e3d4f13a33
 
 // URL del Apps Script (Implementar > Aplicación web) que recibe las respuestas
 // y las manda a tu Gmail. Ver apps-script/README.md
-const FORM_WEBHOOK_URL = '';
+const FORM_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwB-dkD72Ha1OR2MxkguPsM3oIsNTcQdYnG6-L5n6qawchN_QnbK-cRAwWp6vIRTYk/exec';
 
 let currentStep = 1;
 const totalSteps = 3;
