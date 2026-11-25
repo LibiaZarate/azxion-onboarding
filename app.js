@@ -273,7 +273,7 @@ function construirInstrucciones() {
   }[vista];
   const biTxt = {
     basico: 'Métricas básicas del embudo: cuántos llegan, cuántos califican, cuántos compran y dónde se pierden.',
-    bi: 'Tableros de inteligencia de negocio (estilo Tableau). Prefiere opciones abiertas o dentro de mi propia app; no me inscribas a nada de pago sin preguntarme.',
+    bi: 'Tableros de inteligencia de negocio con los frameworks y metodologías de BI (como los proyectos de https://github.com/topics/tableau-project): modelo de datos con hechos y dimensiones, KPIs con definición y fuente, cortes por canal, campaña, etapa y vendedor, tendencias y embudo. Constrúyelo en mi app o con una herramienta abierta de BI (Metabase, Apache Superset o similar) conectada a mi Supabase; recomiéndame la más simple y no me inscribas a nada de pago sin preguntarme.',
     'no-se': 'No sé. Recomiéndame qué métricas me sirven según mi objetivo.'
   }[bi];
 
