@@ -10,8 +10,35 @@ const VIDEO_PROXIMOS_PASOS_URL = 'https://www.loom.com/embed/bf6578094e3d4f13a33
 // y las manda a tu Gmail. Ver apps-script/README.md
 const FORM_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwB-dkD72Ha1OR2MxkguPsM3oIsNTcQdYnG6-L5n6qawchN_QnbK-cRAwWp6vIRTYk/exec';
 
+// Supabase (proyecto Proceso Comercial): solo puede INSERTAR, nunca leer.
+const SUPABASE_URL = 'https://zzigctajijhaedovznhe.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_RzWF6nBKQQcI6mhHGvrTUA_Sps1ct08';
+
+function nuevaSesion() {
+  const id = (crypto.randomUUID && crypto.randomUUID()) || 'xxxxxxxx-xxxx-4xxx-8xxx-xxxxxxxxxxxx'.replace(/x/g, () => (Math.random() * 16 | 0).toString(16));
+  try { localStorage.setItem('azxion_sesion', id); } catch (e) {}
+  return id;
+}
+let SESION_ID;
+try { SESION_ID = localStorage.getItem('azxion_sesion') || nuevaSesion(); } catch (e) { SESION_ID = nuevaSesion(); }
+
+async function sbInsert(tabla, fila) {
+  const res = await fetch(SUPABASE_URL + '/rest/v1/' + tabla, {
+    method: 'POST',
+    headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+    body: JSON.stringify(fila)
+  });
+  if (!res.ok) throw new Error('Supabase ' + res.status);
+}
+
+// Registra en qué paso va cada cliente. Nunca bloquea la página si falla.
+function track(evento, paso, datos) {
+  sbInsert('onboarding_eventos', { sesion_id: SESION_ID, evento, paso: paso || currentStep, datos: datos || {} })
+    .catch(err => console.warn('track', evento, err));
+}
+
 let currentStep = 1;
-const totalSteps = 3;
+const totalSteps = 7;
 let formCompleted = localStorage.getItem('azxion_form_completed') === 'true';
 
 // ---- Videos ----
@@ -69,6 +96,7 @@ function showStep(step) {
 
   document.getElementById('progressFill').style.width = ((step / totalSteps) * 100) + '%';
   currentStep = step;
+  track('paso_visto', step);
 
   if (step === 3 && formCompleted) {
     document.getElementById('sentConfirm').hidden = false;
@@ -167,6 +195,9 @@ async function handleFormSubmit(event) {
 
   setSubmitButton('sending');
   try {
+    // 1) Guardar en Supabase (lo que queda); 2) avisar a Gmail como antes
+    await sbInsert('onboarding_respuestas', { sesion_id: SESION_ID, nombre: data.nombre, email: data.email, telefono: data.telefono, negocio: data.negocio, respuestas: data });
+    track('form_enviado', 2);
     if (!FORM_WEBHOOK_URL) throw new Error('FORM_WEBHOOK_URL sin configurar');
     // text/plain evita el preflight CORS, que Apps Script no responde
     const res = await fetch(FORM_WEBHOOK_URL, {
@@ -198,6 +229,115 @@ async function handleFormSubmit(event) {
   setTimeout(() => showStep(3), 1600);
 }
 
+// ---- Pasos 4 a 7: herramientas, Zernio, sistema, acceso ----
+function leerLocal(clave, def) {
+  try { return JSON.parse(localStorage.getItem(clave) || 'null') || def; } catch (e) { return def; }
+}
+function guardarLocal(clave, valor) {
+  try { localStorage.setItem(clave, JSON.stringify(valor)); } catch (e) {}
+}
+
+function guardarHerramientas() {
+  const prefs = leerLocal('azxion_prefs', {});
+  prefs.github_usuario = document.getElementById('fGithubUser').value.trim();
+  prefs.ia = document.getElementById('fIaElegida').value;
+  guardarLocal('azxion_prefs', prefs);
+  track('herramientas_guardadas', 4, { github_usuario: prefs.github_usuario, ia: prefs.ia });
+  goToStep(5);
+}
+
+function elegirWhatsapp(opcion) {
+  track(opcion, 5);
+  const p = document.getElementById('whatsappElegido');
+  p.textContent = opcion === 'whatsapp_en_llamada'
+    ? '✓ Anotado: conectamos tu WhatsApp juntos en la llamada.'
+    : '✓ Perfecto: tu WhatsApp ya está conectado.';
+  p.hidden = false;
+}
+
+function construirInstrucciones() {
+  const r = leerLocal('azxion_form_data', {});
+  const prefs = leerLocal('azxion_prefs', {});
+  const vista = document.getElementById('fVista').value;
+  const bi = document.getElementById('fBi').value;
+  const deseo = document.getElementById('fDeseo').value.trim();
+  const respuestas = Object.entries(r)
+    .filter(([k, v]) => v && !['fecha_envio', 'telefono', 'email'].includes(k))
+    .map(([k, v]) => `- ${k}: ${String(v).replace(/\s+/g, ' ').trim()}`)
+    .join('\n');
+
+  const vistaTxt = {
+    pipeline: 'Pipeline simple: leads por etapa, "qué toca hoy" y seguimientos.',
+    crm: 'CRM completo (contactos, cotizaciones, equipo). Evalúa Odoo Community (https://github.com/odoo/odoo) frente a construirlo dentro de la app; recomiéndame el más simple que cumpla y explícame por qué antes de instalar nada.',
+    'no-se': 'No sé. Recomiéndame entre pipeline simple y CRM completo (tipo Odoo) según mi negocio, y pregúntame antes de decidir.'
+  }[vista];
+  const biTxt = {
+    basico: 'Métricas básicas del embudo: cuántos llegan, cuántos califican, cuántos compran y dónde se pierden.',
+    bi: 'Tableros de inteligencia de negocio (estilo Tableau). Prefiere opciones abiertas o dentro de mi propia app; no me inscribas a nada de pago sin preguntarme.',
+    'no-se': 'No sé. Recomiéndame qué métricas me sirven según mi objetivo.'
+  }[bi];
+
+  return `Eres el instalador de mi sistema comercial con el framework AZXION de Libia Zárate.
+Yo no soy técnico: háblame simple, un paso a la vez, y pídeme aprobación antes de crear, publicar o pagar algo. Si algo es muy técnico o falla dos veces, detente y dime "esto lo vemos con Libia".
+
+## Reglas
+- Todo se crea en MIS cuentas (GitHub, Supabase, Vercel, Zernio). Nunca me pidas contraseñas; si necesitas iniciar sesión, guíame para que yo lo haga en el navegador.
+- No guardes llaves ni datos personales de mis clientes dentro del código.
+- No envíes mensajes reales a mis clientes sin que yo apruebe el texto.
+
+## Paso 1 · Plantilla
+Crea en mi GitHub un repositorio PRIVADO a partir de la plantilla LibiaZarate/AZXION-TheFrameWorkOS (${prefs.github_usuario ? 'mi usuario es ' + prefs.github_usuario : 'pregúntame mi usuario'}). Si no tengo acceso a la plantilla, detente y dime: "Pídele a Libia acceso a la plantilla".
+Después lee su CLAUDE.md y sigue la skill skills/instalar-sistema-cliente.
+
+## Paso 2 · Mi segundo cerebro
+Con mis respuestas de abajo, llena CLAUDE.md, client.config.yaml y las carpetas de contexto (negocio, cliente ideal, oferta, arquitectura comercial: etapas, señales de compra, preguntas frecuentes, cuándo entro yo, plazos de seguimiento, lo que nunca se dice). Marca lo que infieras como inferido y pregúntame lo que falte. No inventes reglas comerciales.
+
+## Paso 3 · Mi app
+- Vista de ventas: ${vistaTxt}
+- Métricas: ${biTxt}
+${deseo ? '- Lo que yo quiero: ' + deseo + '\n' : ''}- Base de datos en mi Supabase (crea el proyecto si no existe) y publicación en mi Vercel.
+- Conecta mi Zernio (ya está conectado a este chat) para leer conversaciones de WhatsApp, Instagram y Facebook y llevarlas a mi pipeline.
+
+## Paso 4 · Que tú lo entiendas todo
+Deja el repositorio listo para que cualquier IA que abra después (tú, Claude o Codex) lea primero CLAUDE.md y entienda mi negocio, mi pipeline y mis reglas. Al final enséñame a usarlo con 3 ejemplos: "¿qué toca hoy?", "¿quién se está enfriando?", "resúmeme los nuevos".
+
+## Paso 5 · Acceso para Libia
+Cuando termines, recuérdame invitar a libiagzarate@gmail.com como colaboradora del repositorio y a mi organización de Supabase.
+
+## Mis respuestas del onboarding
+${respuestas || '(no encontré mis respuestas en este navegador; pregúntamelas)'}`;
+}
+
+async function copiarInstrucciones() {
+  const texto = construirInstrucciones();
+  const box = document.getElementById('promptBox');
+  box.value = texto;
+  const prefs = leerLocal('azxion_prefs', {});
+  prefs.vista = document.getElementById('fVista').value;
+  prefs.bi = document.getElementById('fBi').value;
+  prefs.deseo = document.getElementById('fDeseo').value.trim();
+  guardarLocal('azxion_prefs', prefs);
+  track('instrucciones_copiadas', 6, { vista: prefs.vista, bi: prefs.bi, deseo: prefs.deseo });
+  try {
+    await navigator.clipboard.writeText(texto);
+    document.getElementById('copiado').hidden = false;
+  } catch (e) {
+    box.hidden = false;
+    box.select();
+  }
+}
+
+async function copiarCorreo() {
+  const correo = document.getElementById('correoAcceso').textContent;
+  try { await navigator.clipboard.writeText(correo); } catch (e) {}
+}
+
+function confirmarAcceso() {
+  const dados = [...document.querySelectorAll('.acceso-check:checked')].map(el => el.dataset.acceso);
+  track('acceso_confirmado', 7, { plataformas: dados });
+  document.getElementById('accesoListo').hidden = false;
+}
+
 // ---- Init ----
 loadVideos();
 restoreDraft();
@@ -207,4 +347,7 @@ onboardingForm.addEventListener('input', (e) => {
   saveDraft();
   if (e.target.classList && e.target.classList.contains('form-input')) clearFieldError(e.target);
 });
-showStep(1);
+document.querySelectorAll('[data-track]').forEach(el => el.addEventListener('click', () => track(el.dataset.track)));
+document.querySelectorAll('.tool-check').forEach(el => el.addEventListener('change', () => { if (el.checked) track('cuenta_creada', 4, { herramienta: el.dataset.tool }); }));
+document.querySelectorAll('.acceso-check').forEach(el => el.addEventListener('change', () => { if (el.checked) track('acceso_dado', 7, { plataforma: el.dataset.acceso }); }));
+showStep(formCompleted ? 3 : 1);

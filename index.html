@@ -51,6 +51,22 @@
           <div class="step-node"><span class="step-number">03</span></div>
           <span class="step-label">PRÓXIMOS_PASOS</span>
         </div>
+        <div class="progress-step" data-step="4">
+          <div class="step-node"><span class="step-number">04</span></div>
+          <span class="step-label">HERRAMIENTAS</span>
+        </div>
+        <div class="progress-step" data-step="5">
+          <div class="step-node"><span class="step-number">05</span></div>
+          <span class="step-label">ZERNIO</span>
+        </div>
+        <div class="progress-step" data-step="6">
+          <div class="step-node"><span class="step-number">06</span></div>
+          <span class="step-label">TU_SISTEMA</span>
+        </div>
+        <div class="progress-step" data-step="7">
+          <div class="step-node"><span class="step-number">07</span></div>
+          <span class="step-label">ACCESO</span>
+        </div>
       </div>
     </div>
 
@@ -498,7 +514,7 @@
 
         <div class="form-cta">
           <p class="form-cta-text">Agenda tu llamada de onboarding ahora (máximo 48 horas):</p>
-          <a href="https://cal.com/libia-zarate-cs7cpd/onboarding" target="_blank" rel="noopener noreferrer" class="btn-primary btn-large">
+          <a href="https://cal.com/libia-zarate-cs7cpd/onboarding" data-track="agendar_click" target="_blank" rel="noopener noreferrer" class="btn-primary btn-large">
             <span class="btn-bracket">[</span>
             AGENDAR_LLAMADA_ONBOARDING
             <span class="btn-bracket">]</span>
@@ -512,9 +528,209 @@
           <span class="btn-arrow">←</span>
           ANTERIOR
         </button>
+        <button class="btn-primary" onclick="goToStep(4)">
+          <span class="btn-bracket">[</span> SIGUIENTE: TUS_HERRAMIENTAS <span class="btn-bracket">]</span> <span class="btn-arrow">→</span>
+        </button>
+      </div>
+    </section>
+    <!-- STEP 4: Herramientas -->
+    <section class="step-panel" id="step4">
+      <div class="step-header">
+        <div class="step-phase">[PHASE_04]</div>
+        <h1 class="step-title">TUS_HERRAMIENTAS</h1>
+        <div class="step-subtitle">// Todo queda a tu nombre. Tú creas las cuentas; tu IA y nosotros construimos encima.</div>
+      </div>
+      <div class="step-content">
+        <div class="info-card">
+          <div class="info-card__header"><span class="info-title">POR_QUÉ_A_TU_NOMBRE</span></div>
+          <div class="info-card__body">
+            <p>Tu sistema vive en tus cuentas: el código, la base de datos y tus canales son tuyos. Si algún día dejas de trabajar con AZXION, no pierdes nada. Crear cada cuenta toma unos 2 minutos. <strong>Nunca te vamos a pedir contraseñas.</strong> Si te atoras, lo hacemos juntos en la llamada.</p>
+          </div>
+        </div>
+
+        <div class="pasos-list herramientas">
+          <label class="paso-item tool-item">
+            <input type="checkbox" class="tool-check" data-tool="ia">
+            <div class="paso-number">01</div><div class="paso-line"></div>
+            <div class="paso-text"><strong>Tu IA:</strong> instala <a href="https://claude.ai/download" target="_blank" rel="noopener">Claude (app de escritorio, pestaña Code)</a> o <a href="https://openai.com/codex/" target="_blank" rel="noopener">Codex</a>. Funciona con tu suscripción; no tienes que conectar ninguna llave.</div>
+          </label>
+          <label class="paso-item tool-item">
+            <input type="checkbox" class="tool-check" data-tool="github">
+            <div class="paso-number">02</div><div class="paso-line"></div>
+            <div class="paso-text"><strong>GitHub</strong> (donde vive el código de tu app): <a href="https://github.com/signup" target="_blank" rel="noopener">crear cuenta</a>.</div>
+          </label>
+          <label class="paso-item tool-item">
+            <input type="checkbox" class="tool-check" data-tool="supabase">
+            <div class="paso-number">03</div><div class="paso-line"></div>
+            <div class="paso-text"><strong>Supabase</strong> (tu base de datos): <a href="https://supabase.com/dashboard/sign-up" target="_blank" rel="noopener">crear cuenta</a> — entra con tu GitHub.</div>
+          </label>
+          <label class="paso-item tool-item">
+            <input type="checkbox" class="tool-check" data-tool="vercel">
+            <div class="paso-number">04</div><div class="paso-line"></div>
+            <div class="paso-text"><strong>Vercel</strong> (donde se publica tu app): <a href="https://vercel.com/signup" target="_blank" rel="noopener">crear cuenta</a> — entra con tu GitHub.</div>
+          </label>
+          <label class="paso-item tool-item">
+            <input type="checkbox" class="tool-check" data-tool="zernio">
+            <div class="paso-number">05</div><div class="paso-line"></div>
+            <div class="paso-text"><strong>Zernio</strong> (tus WhatsApp, Instagram y Facebook en un solo lugar): <a href="https://zernio.com" target="_blank" rel="noopener">crear cuenta</a>.</div>
+          </label>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="fGithubUser">Tu usuario de GitHub</label>
+            <p class="form-hint">Lo usamos para darte acceso a la plantilla AZXION desde la que tu IA arma tu sistema.</p>
+            <input class="form-input" type="text" id="fGithubUser" placeholder="ej. gustavo-peraza" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="fIaElegida">¿Qué IA vas a usar?</label>
+            <select class="form-input form-select" id="fIaElegida">
+              <option value="">Elige una</option>
+              <option value="claude-code">Claude (Claude Code)</option>
+              <option value="codex">Codex (ChatGPT)</option>
+              <option value="no-se">No sé todavía — lo vemos en la llamada</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="step-actions">
+        <button class="btn-secondary" onclick="goToStep(3)"><span class="btn-arrow">←</span> ANTERIOR</button>
+        <button class="btn-primary" onclick="guardarHerramientas()"><span class="btn-bracket">[</span> SIGUIENTE: CONECTAR_ZERNIO <span class="btn-bracket">]</span> <span class="btn-arrow">→</span></button>
+      </div>
+    </section>
+
+    <!-- STEP 5: Zernio + WhatsApp -->
+    <section class="step-panel" id="step5">
+      <div class="step-header">
+        <div class="step-phase">[PHASE_05]</div>
+        <h1 class="step-title">CONECTA_TU_ZERNIO</h1>
+        <div class="step-subtitle">// Tu IA aprende a leer y responder tus canales</div>
+      </div>
+      <div class="step-content">
+        <div class="pasos-list">
+          <div class="paso-item">
+            <div class="paso-number">01</div><div class="paso-line"></div>
+            <div class="paso-text">Abre un chat nuevo en tu Claude Code o tu Codex.</div>
+          </div>
+          <div class="paso-item">
+            <div class="paso-number">02</div><div class="paso-line"></div>
+            <div class="paso-text">Entra a <a href="https://zernio.com/agents" target="_blank" rel="noopener" data-track="zernio_agents_click"><strong>zernio.com/agents</strong></a> y sigue <strong>Set up Zernio</strong>: te da lo que tienes que pegar en tu chat para que tu IA quede conectada a tu Zernio.</div>
+          </div>
+          <div class="paso-item">
+            <div class="paso-number">03</div><div class="paso-line"></div>
+            <div class="paso-text">Para probar, pregúntale a tu IA: <em>"¿qué cuentas tengo conectadas en Zernio?"</em></div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card__header"><span class="info-title">WHATSAPP // CÓDIGO_QR</span></div>
+          <div class="info-card__body">
+            <p>Para conectar tu WhatsApp Business se escanea un código QR desde tu teléfono. Tu número <strong>sigue funcionando en tu app de siempre</strong>.</p>
+            <p>¿Prefieres compañía? Lo conectamos juntos en la llamada de onboarding.</p>
+            <div class="choice-row">
+              <button class="btn-secondary" type="button" onclick="elegirWhatsapp('whatsapp_solo')">YA LO CONECTÉ YO</button>
+              <button class="btn-secondary" type="button" onclick="elegirWhatsapp('whatsapp_en_llamada')">LO CONECTAMOS EN LLAMADA (SALTAR)</button>
+            </div>
+            <p class="form-sent" id="whatsappElegido" hidden></p>
+          </div>
+        </div>
+      </div>
+      <div class="step-actions">
+        <button class="btn-secondary" onclick="goToStep(4)"><span class="btn-arrow">←</span> ANTERIOR</button>
+        <button class="btn-primary" onclick="track('zernio_paso_completado',5);goToStep(6)"><span class="btn-bracket">[</span> SIGUIENTE: TU_SISTEMA <span class="btn-bracket">]</span> <span class="btn-arrow">→</span></button>
+      </div>
+    </section>
+
+    <!-- STEP 6: Tu sistema -->
+    <section class="step-panel" id="step6">
+      <div class="step-header">
+        <div class="step-phase">[PHASE_06]</div>
+        <h1 class="step-title">CONSTRUYE_TU_SISTEMA</h1>
+        <div class="step-subtitle">// Tu IA arma tu app y tu segundo cerebro con el framework AZXION y tus respuestas</div>
+      </div>
+      <div class="step-content">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="fVista">¿Cómo quieres ver tus ventas?</label>
+            <select class="form-input form-select" id="fVista">
+              <option value="pipeline">Pipeline simple: mis leads por etapa y qué toca hoy</option>
+              <option value="crm">CRM completo: contactos, cotizaciones y equipo (tipo Odoo)</option>
+              <option value="no-se">No sé — que me recomiende</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="fBi">¿Quieres analizar métricas (BI)?</label>
+            <select class="form-input form-select" id="fBi">
+              <option value="basico">Lo básico: cuántos llegan, cuántos califican, cuántos compran</option>
+              <option value="bi">Sí, tableros de inteligencia de negocio (tipo Tableau)</option>
+              <option value="no-se">No sé — que me recomiende</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label class="form-label" for="fDeseo">¿Algo más que quieras que tenga tu sistema?</label>
+            <textarea class="form-input form-textarea" id="fDeseo" placeholder="Ej. que cada mañana me diga a quién contestar, ver mi meta de ventas, separar por cliente..."></textarea>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card__header"><span class="info-title">CÓMO_SE_CONSTRUYE</span></div>
+          <div class="info-card__body">
+            <ul class="info-list">
+              <li><span class="list-prefix">01</span> Copia tus instrucciones con el botón de abajo.</li>
+              <li><span class="list-prefix">02</span> Pégalas en el mismo chat donde conectaste Zernio.</li>
+              <li><span class="list-prefix">03</span> Tu IA te va a preguntar y pedir aprobación en cada paso. Si algo suena técnico y no lo entiendes, escribe <em>"esto lo vemos con Libia"</em> y sigue.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="form-cta">
+          <button class="btn-primary btn-large" type="button" onclick="copiarInstrucciones()"><span class="btn-bracket">[</span> COPIAR_MIS_INSTRUCCIONES <span class="btn-bracket">]</span></button>
+          <p class="form-sent" id="copiado" hidden>✓ Copiado. Pégalo en tu chat.</p>
+          <textarea class="form-input form-textarea prompt-box" id="promptBox" readonly hidden></textarea>
+        </div>
+      </div>
+      <div class="step-actions">
+        <button class="btn-secondary" onclick="goToStep(5)"><span class="btn-arrow">←</span> ANTERIOR</button>
+        <button class="btn-primary" onclick="track('sistema_paso_completado',6);goToStep(7)"><span class="btn-bracket">[</span> SIGUIENTE: DAR_ACCESO <span class="btn-bracket">]</span> <span class="btn-arrow">→</span></button>
+      </div>
+    </section>
+
+    <!-- STEP 7: Acceso -->
+    <section class="step-panel" id="step7">
+      <div class="step-header">
+        <div class="step-phase">[PHASE_07]</div>
+        <h1 class="step-title">DAME_ACCESO</h1>
+        <div class="step-subtitle">// Para acompañarte, revisar y ajustar lo técnico — sin contraseñas</div>
+      </div>
+      <div class="step-content">
+        <p class="form-hint">Invita a este correo:</p>
+        <div class="correo-acceso">
+          <code id="correoAcceso">libiagzarate@gmail.com</code>
+          <button class="btn-secondary" type="button" onclick="copiarCorreo()">COPIAR</button>
+        </div>
+        <div class="pasos-list">
+          <label class="paso-item tool-item">
+            <input type="checkbox" class="acceso-check" data-acceso="github">
+            <div class="paso-number">01</div><div class="paso-line"></div>
+            <div class="paso-text"><strong>GitHub:</strong> abre el repositorio que creó tu IA → <em>Settings</em> → <em>Collaborators</em> → <em>Add people</em> → pega el correo.</div>
+          </label>
+          <label class="paso-item tool-item">
+            <input type="checkbox" class="acceso-check" data-acceso="supabase">
+            <div class="paso-number">02</div><div class="paso-line"></div>
+            <div class="paso-text"><strong>Supabase:</strong> en tu organización → <em>Team</em> → <em>Invite</em> → pega el correo.</div>
+          </label>
+        </div>
+        <div class="form-cta">
+          <button class="btn-primary btn-large" type="button" onclick="confirmarAcceso()"><span class="btn-bracket">[</span> LISTO_YA_DI_ACCESO <span class="btn-bracket">]</span></button>
+          <p class="form-sent" id="accesoListo" hidden>✓ Recibido. Te escribimos para revisar tu sistema juntos.</p>
+        </div>
+      </div>
+      <div class="step-actions">
+        <button class="btn-secondary" onclick="goToStep(6)"><span class="btn-arrow">←</span> ANTERIOR</button>
         <div></div>
       </div>
     </section>
+
 
   </main>
 
