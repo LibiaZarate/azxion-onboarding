@@ -53,7 +53,7 @@ function loadVideos() {
       iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;';
       wrapper.appendChild(iframe);
     } else {
-      wrapper.innerHTML = '<div class="video-pending">[ VIDEO_EN_PREPARACIÓN ]</div>';
+      wrapper.innerHTML = '<div class="video-pending">[ VIDEO EN PREPARACIÓN ]</div>';
     }
   });
 }
@@ -137,13 +137,13 @@ function setSubmitButton(state) {
     btn.innerHTML = '<span class="btn-bracket">[</span> ENVIANDO... <span class="btn-bracket">]</span>';
   } else if (state === 'sent') {
     btn.disabled = true;
-    btn.innerHTML = '<span class="sent-check">✓</span> FORM_ENVIADO';
+    btn.innerHTML = '<span class="sent-check">✓</span> ENVIADO';
   } else if (state === 'retry') {
     btn.disabled = false;
-    btn.innerHTML = '<span class="btn-bracket">[</span> REINTENTAR_ENVÍO <span class="btn-bracket">]</span> <span class="btn-arrow">→</span>';
+    btn.innerHTML = '<span class="btn-bracket">[</span> REINTENTAR <span class="btn-bracket">]</span> <span class="btn-arrow">→</span>';
   } else {
     btn.disabled = false;
-    btn.innerHTML = '<span class="btn-bracket">[</span> ENVIAR_FORM <span class="btn-bracket">]</span> <span class="btn-arrow">→</span>';
+    btn.innerHTML = '<span class="btn-bracket">[</span> ENVIAR <span class="btn-bracket">]</span> <span class="btn-arrow">→</span>';
   }
 }
 
@@ -287,7 +287,7 @@ function cargarVideosMp4() {
     v.controls = true; v.preload = 'metadata'; v.playsInline = true;
     v.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;background:#000;';
     v.addEventListener('play', () => track('video_play', currentStep, { video: w.dataset.videoMp4 }), { once: true });
-    v.addEventListener('error', () => { w.innerHTML = '<div class="video-pending">[ VIDEO_EN_PREPARACIÓN ]</div>'; });
+    v.addEventListener('error', () => { w.innerHTML = '<div class="video-pending">[ VIDEO EN PREPARACIÓN ]</div>'; });
     w.appendChild(v);
   });
 }

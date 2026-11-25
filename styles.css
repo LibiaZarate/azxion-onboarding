@@ -442,3 +442,12 @@ body::after { bottom: 20px; right: 20px; border-width: 0 1px 1px 0; }
 .copiable { cursor: copy; border: 1px solid currentColor; padding: 1px 6px; }
 .copiable.copiado { opacity: .5; }
 .info-card .video-frame { margin-bottom: 16px; }
+
+@media (max-width: 600px){ .hide-movil{display:none} .step-title{overflow-wrap:anywhere} }
+@media (max-width: 600px){
+  .progress-steps{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;flex-wrap:nowrap}
+  .progress-step{min-width:0;align-items:center}
+  .progress-step .step-label{display:none}
+  .step-node{width:36px;height:36px}
+}
+@media (max-width: 600px){ .tool-item .paso-line{display:none} .tool-item{gap:10px} }

@@ -26,7 +26,7 @@
     </div>
     <div class="system-bar__right">
       <span class="status-indicator"></span>
-      <span class="status-text">SISTEMA ACTIVO</span>
+      <span class="status-text hide-movil">SISTEMA ACTIVO</span>
     </div>
   </header>
 
@@ -41,15 +41,15 @@
       <div class="progress-steps">
         <div class="progress-step active" data-step="1">
           <div class="step-node"><span class="step-number">01</span></div>
-          <span class="step-label">VIDEO_BIENVENIDA</span>
+          <span class="step-label">BIENVENIDA</span>
         </div>
         <div class="progress-step" data-step="2">
           <div class="step-node"><span class="step-number">02</span></div>
-          <span class="step-label">FORM_ONBOARDING</span>
+          <span class="step-label">TUS RESPUESTAS</span>
         </div>
         <div class="progress-step" data-step="3">
           <div class="step-node"><span class="step-number">03</span></div>
-          <span class="step-label">PRÓXIMOS_PASOS</span>
+          <span class="step-label">LLAMADA</span>
         </div>
         <div class="progress-step" data-step="4">
           <div class="step-node"><span class="step-number">04</span></div>
@@ -65,7 +65,7 @@
         </div>
         <div class="progress-step" data-step="7">
           <div class="step-node"><span class="step-number">07</span></div>
-          <span class="step-label">TU_SISTEMA</span>
+          <span class="step-label">TU SISTEMA</span>
         </div>
       </div>
     </div>
@@ -73,9 +73,9 @@
     <!-- STEP 1: Video de Bienvenida -->
     <section class="step-panel active" id="step1">
       <div class="step-header">
-        <div class="step-phase">[PHASE_01]</div>
-        <h1 class="step-title">VIDEO_DE_BIENVENIDA</h1>
-        <div class="step-subtitle">// Bienvenido al ecosistema AZXION — mira este video antes de continuar</div>
+        <div class="step-phase">[PASO 1 DE 7]</div>
+        <h1 class="step-title">BIENVENIDA</h1>
+        <div class="step-subtitle">// Te damos la bienvenida. Mira este video antes de seguir</div>
       </div>
       <div class="step-content">
 
@@ -86,7 +86,7 @@
         <div class="welcome-notes">
           <div class="info-card">
             <div class="info-card__header">
-              <span class="info-title">LO_QUE_ES // LO_QUE_NO_ES</span>
+              <span class="info-title">QUÉ ES Y QUÉ NO ES</span>
             </div>
             <div class="info-card__body">
               <ul class="info-list">
@@ -99,7 +99,7 @@
           </div>
           <div class="info-card">
             <div class="info-card__header">
-              <span class="info-title">CASO_DE_ÉXITO.TRAITS</span>
+              <span class="info-title">A QUIÉN LE VA MEJOR</span>
             </div>
             <div class="info-card__body">
               <p>A los que mejor les va en este proceso tienen estas tres características:</p>
@@ -117,7 +117,7 @@
         <div></div>
         <button class="btn-primary" onclick="goToStep(2)">
           <span class="btn-bracket">[</span>
-          CONTINUAR_AL_FORM
+          CONTINUAR AL FORM
           <span class="btn-bracket">]</span>
           <span class="btn-arrow">→</span>
         </button>
@@ -127,9 +127,9 @@
     <!-- STEP 2: Form de Onboarding -->
     <section class="step-panel" id="step2">
       <div class="step-header">
-        <div class="step-phase">[PHASE_02]</div>
-        <h1 class="step-title">FORM_ONBOARDING</h1>
-        <div class="step-subtitle">// Discovery de implementación — de aquí sale el diseño de tu sistema. Completa los campos obligatorios (*) para continuar</div>
+        <div class="step-phase">[PASO 2 DE 7]</div>
+        <h1 class="step-title">TUS RESPUESTAS</h1>
+        <div class="step-subtitle">// Con tus respuestas diseñamos tu sistema. Las que tienen * son obligatorias. Se guardan solas en este navegador: puedes dejarlo y volver.</div>
       </div>
       <div class="step-content">
         <form id="onboardingForm" novalidate>
@@ -142,10 +142,10 @@
           </div>
 
           <div class="form-section">
-            <div class="form-section-title">[01] DATOS_DE_CONTACTO</div>
+            <div class="form-section-title">[01] DATOS DE CONTACTO</div>
             <div class="form-grid">
               <div class="form-group">
-                <label class="form-label" for="fNombre">NOMBRE_COMPLETO *</label>
+                <label class="form-label" for="fNombre">NOMBRE COMPLETO *</label>
                 <input class="form-input" type="text" id="fNombre" name="nombre" required autocomplete="name" placeholder="Tu nombre completo">
               </div>
               <div class="form-group">
@@ -157,14 +157,14 @@
                 <input class="form-input" type="tel" id="fTelefono" name="telefono" required autocomplete="tel" placeholder="+52 ...">
               </div>
               <div class="form-group">
-                <label class="form-label" for="fNegocio">NOMBRE_DE_TU_NEGOCIO *</label>
+                <label class="form-label" for="fNegocio">NOMBRE DE TU NEGOCIO *</label>
                 <input class="form-input" type="text" id="fNegocio" name="negocio" required placeholder="Nombre de tu negocio / proyecto">
               </div>
             </div>
           </div>
 
           <div class="form-section">
-            <div class="form-section-title">[02] POR_QUÉ_NOSOTROS</div>
+            <div class="form-section-title">[02] POR QUÉ NOSOTROS</div>
             <div class="form-grid full-width">
               <div class="form-group wide">
                 <label class="form-label" for="fB0a">¿CÓMO TE ENTERASTE DE NOSOTROS Y DÓNDE NOS VISTE POR PRIMERA VEZ? *</label>
@@ -190,7 +190,7 @@
           </div>
 
           <div class="form-section">
-            <div class="form-section-title">[03] TU_NEGOCIO_Y_OFERTA</div>
+            <div class="form-section-title">[03] TU NEGOCIO Y OFERTA</div>
             <div class="form-grid full-width">
               <div class="form-group wide">
                 <label class="form-label" for="fB1a">¿QUÉ HACE TU NEGOCIO, EN UNA FRASE QUE TU MAMÁ ENTENDERÍA? *</label>
@@ -209,7 +209,7 @@
             </div>
             <div class="form-grid">
               <div class="form-group">
-                <label class="form-label" for="fB1d">MODELO_DE_NEGOCIO *</label>
+                <label class="form-label" for="fB1d">MODELO DE NEGOCIO *</label>
                 <select class="form-input form-select" id="fB1d" name="modelo_negocio" required>
                   <option value="">Selecciona...</option>
                   <option>One-shot (venta única)</option>
@@ -220,14 +220,14 @@
                 </select>
               </div>
               <div class="form-group">
-                <label class="form-label" for="fB1e">GEOGRAFÍA_E_IDIOMAS *</label>
+                <label class="form-label" for="fB1e">GEOGRAFÍA E IDIOMAS *</label>
                 <input class="form-input" type="text" id="fB1e" name="geografia_idiomas" required placeholder="¿Dónde vendes? ¿En qué idiomas atiendes?">
               </div>
             </div>
           </div>
 
           <div class="form-section">
-            <div class="form-section-title">[04] A_QUIÉN_LE_VENDES</div>
+            <div class="form-section-title">[04] A QUIÉN LE VENDES</div>
             <div class="form-grid full-width">
               <div class="form-group wide">
                 <label class="form-label" for="fB2a">TU CLIENTE IDEAL, EN UNA FRASE CONCRETA *</label>
@@ -243,7 +243,7 @@
           </div>
 
           <div class="form-section">
-            <div class="form-section-title">[05] REGLAS_QUE_EL_AGENTE_NO_PUEDE_ROMPER</div>
+            <div class="form-section-title">[05] LO QUE TU ASISTENTE NUNCA PUEDE HACER</div>
             <div class="form-grid full-width">
               <div class="form-group wide">
                 <label class="form-label" for="fB4a">¿CÓMO SE COTIZA EN TU NEGOCIO? *</label>
@@ -269,7 +269,7 @@
           </div>
 
           <div class="form-section">
-            <div class="form-section-title">[06] LA_CONVERSACIÓN</div>
+            <div class="form-section-title">[06] LA CONVERSACIÓN</div>
             <div class="form-grid full-width">
               <div class="form-group wide">
                 <label class="form-label" for="fB5a">LAS 10–15 PREGUNTAS QUE MÁS TE REPITEN LOS CLIENTES, CON TU RESPUESTA DE HOY *</label>
@@ -285,7 +285,7 @@
           </div>
 
           <div class="form-section">
-            <div class="form-section-title">[07] ALCANCE_Y_LÍMITES_DEL_AGENTE</div>
+            <div class="form-section-title">[07] HASTA DÓNDE LLEGA TU ASISTENTE</div>
             <div class="form-grid full-width">
               <div class="form-group wide">
                 <label class="form-label" for="fB7a">¿QUÉ PUEDE HACER EL AGENTE? *</label>
@@ -293,7 +293,7 @@
                 <textarea class="form-input form-textarea" id="fB7a" name="alcance_agente" required placeholder="Precios: ...&#10;Agenda: ...&#10;Link de pago: ...&#10;Disponibilidad: ...&#10;Recomienda: ..."></textarea>
               </div>
               <div class="form-group wide">
-                <label class="form-label" for="fB7b">ESCALAMIENTO_A_HUMANO *</label>
+                <label class="form-label" for="fB7b">¿CUÁNDO TIENE QUE ENTRAR UNA PERSONA? *</label>
                 <p class="form-hint">¿Cuántos turnos máximo antes de escalar? ¿Qué tipo de conversación SIEMPRE va a humano? Si manejas datos delicados (médicos, financieros): ¿qué NUNCA puede pedir por chat?</p>
                 <textarea class="form-input form-textarea" id="fB7b" name="escalamiento" required placeholder="Escala a humano cuando..."></textarea>
               </div>
@@ -301,7 +301,7 @@
           </div>
 
           <div class="form-section">
-            <div class="form-section-title">[08] TU_PROCESO_COMERCIAL_HOY</div>
+            <div class="form-section-title">[08] TU PROCESO COMERCIAL HOY</div>
             <div class="form-grid full-width">
               <div class="form-group wide">
                 <label class="form-label" for="fB8a">EL VIAJE DEL LEAD, DE LA ENTRADA AL PAGO, PASO POR PASO *</label>
@@ -322,7 +322,7 @@
           </div>
 
           <div class="form-section">
-            <div class="form-section-title">[09] PUNTO_A — TU_BASELINE</div>
+            <div class="form-section-title">[09] CÓMO ESTÁS HOY</div>
             <p class="form-section-note">Estimaciones honestas. Nadie tiene estos números exactos — los reconstruimos juntos con tu CRM/sheet en mano durante la llamada. Pero tu mejor estimación hoy es el punto de partida contra el que vamos a medir toda la mejora.</p>
             <div class="form-grid full-width">
               <div class="form-group wide">
@@ -353,7 +353,7 @@
           </div>
 
           <div class="form-section">
-            <div class="form-section-title">[10] OBJETIVO_90_DÍAS</div>
+            <div class="form-section-title">[10] OBJETIVO 90 DÍAS</div>
             <div class="form-grid full-width">
               <div class="form-group wide">
                 <label class="form-label" for="fB11a">¿QUÉ PROBLEMA ESPECÍFICO TE TRAJO HASTA ACÁ? *</label>
@@ -378,7 +378,7 @@
           </div>
 
           <div class="form-section">
-            <div class="form-section-title">[11] TU_DASHBOARD</div>
+            <div class="form-section-title">[11] TU DASHBOARD</div>
             <div class="form-grid full-width">
               <div class="form-group wide">
                 <label class="form-label" for="fB12s">¿CUÁL ES LA SENSACIÓN QUE TE GUSTARÍA EXPERIMENTAR Y VER A PRIMERA VISTA DENTRO DEL DASHBOARD — Y CÓMO TE GUSTARÍA VIVIRLA? *</label>
@@ -408,7 +408,7 @@
           </div>
 
           <div class="form-section">
-            <div class="form-section-title">[12] STACK_Y_OPERACIÓN</div>
+            <div class="form-section-title">[12] TUS HERRAMIENTAS Y TU EQUIPO</div>
             <div class="form-grid full-width">
               <div class="form-group wide">
                 <label class="form-label" for="fB13a">TUS HERRAMIENTAS HOY, POR FUNCIÓN *</label>
@@ -449,7 +449,7 @@
           </div>
 
           <div class="form-sent" id="formSent" hidden>
-            <span class="sent-check">✓</span> FORM_ENVIADO — tus respuestas llegaron correctamente. Pasando a próximos pasos...
+            <span class="sent-check">✓</span> FORM ENVIADO — tus respuestas llegaron correctamente. Pasando a próximos pasos...
           </div>
 
         </form>
@@ -461,7 +461,7 @@
         </button>
         <button class="btn-primary" id="submitFormBtn" type="submit" form="onboardingForm">
           <span class="btn-bracket">[</span>
-          ENVIAR_FORM
+          ENVIAR FORM
           <span class="btn-bracket">]</span>
           <span class="btn-arrow">→</span>
         </button>
@@ -471,14 +471,14 @@
     <!-- STEP 3: Video de Próximos Pasos -->
     <section class="step-panel" id="step3">
       <div class="step-header">
-        <div class="step-phase">[PHASE_03]</div>
-        <h1 class="step-title">PRÓXIMOS_PASOS</h1>
-        <div class="step-subtitle">// Form recibido — esto es exactamente lo que pasa ahora</div>
+        <div class="step-phase">[PASO 3 DE 7]</div>
+        <h1 class="step-title">AGENDA TU LLAMADA</h1>
+        <div class="step-subtitle">// Recibimos tus respuestas. Esto es lo que sigue</div>
       </div>
       <div class="step-content">
 
         <div class="form-sent" id="sentConfirm" hidden>
-          <span class="sent-check">✓</span> FORM_ENVIADO_CORRECTAMENTE — ya tenemos tus respuestas
+          <span class="sent-check">✓</span> FORM ENVIADO CORRECTAMENTE — ya tenemos tus respuestas
         </div>
 
         <div class="video-frame">
@@ -499,13 +499,13 @@
           <div class="paso-item">
             <div class="paso-number">03</div>
             <div class="paso-line"></div>
-            <div class="paso-text">Después de la llamada vas a tener el plan claro y arrancamos con la <strong>arquitectura y despliegue</strong> de tu sistema.</div>
+            <div class="paso-text">Después de la llamada vas a tener el plan claro y empezamos a <strong>construir tu sistema</strong>.</div>
           </div>
         </div>
 
         <div class="info-card llamada-info">
           <div class="info-card__header">
-            <span class="info-title">¿QUÉ_ES_LA_LLAMADA_DE_ONBOARDING?</span>
+            <span class="info-title">¿QUÉ ES LA LLAMADA DE ONBOARDING?</span>
           </div>
           <div class="info-card__body">
             <p>Es la primera llamada del proceso. Ahí vamos a revisar tus respuestas del form, alinear tu objetivo a 90 días y explicarte cómo va a funcionar todo el proceso de trabajo: llamadas, reportes, accesos y comunicación. Sales de esa llamada con el camino completamente claro.</p>
@@ -516,7 +516,7 @@
           <p class="form-cta-text">Agenda tu llamada de onboarding ahora (máximo 48 horas):</p>
           <a href="https://cal.com/libia-zarate-cs7cpd/onboarding" data-track="agendar_click" target="_blank" rel="noopener noreferrer" class="btn-primary btn-large">
             <span class="btn-bracket">[</span>
-            AGENDAR_LLAMADA_ONBOARDING
+            AGENDAR LLAMADA ONBOARDING
             <span class="btn-bracket">]</span>
             <span class="btn-arrow">→</span>
           </a>
@@ -529,20 +529,20 @@
           ANTERIOR
         </button>
         <button class="btn-primary" onclick="goToStep(4)">
-          <span class="btn-bracket">[</span> SIGUIENTE: TUS_HERRAMIENTAS <span class="btn-bracket">]</span> <span class="btn-arrow">→</span>
+          <span class="btn-bracket">[</span> SIGUIENTE: TUS HERRAMIENTAS <span class="btn-bracket">]</span> <span class="btn-arrow">→</span>
         </button>
       </div>
     </section>
     <!-- STEP 4: Herramientas -->
     <section class="step-panel" id="step4">
       <div class="step-header">
-        <div class="step-phase">[PHASE_04]</div>
-        <h1 class="step-title">TUS_CUENTAS</h1>
+        <div class="step-phase">[PASO 4 DE 7]</div>
+        <h1 class="step-title">TUS CUENTAS</h1>
         <div class="step-subtitle">// Todo tu sistema vive en tus cuentas. Tú las creas; nosotros construimos encima.</div>
       </div>
       <div class="step-content">
         <div class="info-card">
-          <div class="info-card__header"><span class="info-title">POR_QUÉ_A_TU_NOMBRE</span></div>
+          <div class="info-card__header"><span class="info-title">POR QUÉ A TU NOMBRE</span></div>
           <div class="info-card__body">
             <p>Tu código, tu base de datos, tu app y tus canales son tuyos. Si algún día dejas de trabajar con AZXION, no pierdes nada. Cada cuenta toma unos 2 minutos. <strong>Nunca te vamos a pedir contraseñas.</strong> Si te atoras, lo hacemos juntos en la llamada.</p>
           </div>
@@ -580,7 +580,7 @@
 
         <div class="form-grid">
           <div class="form-group">
-            <label class="form-label" for="fIaElegida">¿Qué IA vas a usar?</label>
+            <label class="form-label" for="fIaElegida">¿Qué ayudante de inteligencia artificial vas a usar?</label>
             <select class="form-input form-select" id="fIaElegida">
               <option value="">Elige una</option>
               <option value="claude-code">Claude (Claude Code)</option>
@@ -592,15 +592,15 @@
       </div>
       <div class="step-actions">
         <button class="btn-secondary" onclick="goToStep(3)"><span class="btn-arrow">←</span> ANTERIOR</button>
-        <button class="btn-primary" onclick="guardarHerramientas()"><span class="btn-bracket">[</span> SIGUIENTE: DAR_ACCESO <span class="btn-bracket">]</span> <span class="btn-arrow">→</span></button>
+        <button class="btn-primary" onclick="guardarHerramientas()"><span class="btn-bracket">[</span> SIGUIENTE: DAR ACCESO <span class="btn-bracket">]</span> <span class="btn-arrow">→</span></button>
       </div>
     </section>
 
     <!-- STEP 5: Acceso -->
     <section class="step-panel" id="step5">
       <div class="step-header">
-        <div class="step-phase">[PHASE_05]</div>
-        <h1 class="step-title">DAME_ACCESO</h1>
+        <div class="step-phase">[PASO 5 DE 7]</div>
+        <h1 class="step-title">DAME ACCESO</h1>
         <div class="step-subtitle">// Para construir tu sistema dentro de tus cuentas — sin contraseñas, y lo quitas cuando quieras</div>
       </div>
       <div class="step-content">
@@ -610,7 +610,7 @@
           <label class="paso-item tool-item">
             <input type="checkbox" class="acceso-check" data-acceso="repo">
             <div class="paso-number">01</div><div class="paso-line"></div>
-            <div class="paso-text"><strong>Crea tu repositorio:</strong> en GitHub, botón <em>New</em> (o <a href="https://github.com/new" target="_blank" rel="noopener">github.com/new</a>) → nombre <code>mi-sistema</code> → <strong>Private</strong> → <em>Create repository</em>. Déjalo vacío.</div>
+            <div class="paso-text"><strong>Crea tu caja de código (repositorio):</strong> en GitHub, botón <em>New</em> (o <a href="https://github.com/new" target="_blank" rel="noopener">github.com/new</a>) → nombre <code>mi-sistema</code> → <strong>Private</strong> → <em>Create repository</em>. Déjalo vacío.</div>
           </label>
           <label class="paso-item tool-item">
             <input type="checkbox" class="acceso-check" data-acceso="github">
@@ -630,7 +630,7 @@
             <input class="form-input" type="text" id="fGithubUser" placeholder="ej. gustavo-peraza" autocomplete="off">
           </div>
           <div class="form-group">
-            <label class="form-label" for="fRepo">Nombre de tu repositorio</label>
+            <label class="form-label" for="fRepo">Nombre de tu caja en GitHub (repositorio)</label>
             <input class="form-input" type="text" id="fRepo" value="mi-sistema" autocomplete="off">
           </div>
         </div>
@@ -638,16 +638,16 @@
       </div>
       <div class="step-actions">
         <button class="btn-secondary" onclick="goToStep(4)"><span class="btn-arrow">←</span> ANTERIOR</button>
-        <button class="btn-primary" onclick="guardarAcceso()"><span class="btn-bracket">[</span> SIGUIENTE: CONECTAR_ZERNIO <span class="btn-bracket">]</span> <span class="btn-arrow">→</span></button>
+        <button class="btn-primary" onclick="guardarAcceso()"><span class="btn-bracket">[</span> SIGUIENTE: CONECTAR ZERNIO <span class="btn-bracket">]</span> <span class="btn-arrow">→</span></button>
       </div>
     </section>
 
     <!-- STEP 6: Zernio + WhatsApp -->
     <section class="step-panel" id="step6">
       <div class="step-header">
-        <div class="step-phase">[PHASE_06]</div>
-        <h1 class="step-title">CONECTA_TU_ZERNIO</h1>
-        <div class="step-subtitle">// Tu IA aprende a leer y ordenar tus conversaciones</div>
+        <div class="step-phase">[PASO 6 DE 7]</div>
+        <h1 class="step-title">CONECTA TU ZERNIO</h1>
+        <div class="step-subtitle">// Tu ayudante aprende a leer y ordenar tus mensajes</div>
       </div>
       <div class="step-content">
         <div class="video-frame"><div class="video-wrapper" data-video-mp4="videos/03-zernio.mp4"></div></div>
@@ -667,7 +667,7 @@
         </div>
 
         <div class="info-card">
-          <div class="info-card__header"><span class="info-title">WHATSAPP // CÓDIGO_QR</span></div>
+          <div class="info-card__header"><span class="info-title">WHATSAPP // CÓDIGO QR</span></div>
           <div class="info-card__body">
             <div class="video-frame"><div class="video-wrapper" data-video-mp4="videos/04-whatsapp.mp4"></div></div>
             <p>Tu WhatsApp Business se conecta escaneando un código QR con tu teléfono, y <strong>sigue funcionando en tu app de siempre</strong>. ¿Prefieres compañía? Lo conectamos juntos en la llamada.</p>
@@ -681,16 +681,16 @@
       </div>
       <div class="step-actions">
         <button class="btn-secondary" onclick="goToStep(5)"><span class="btn-arrow">←</span> ANTERIOR</button>
-        <button class="btn-primary" onclick="track('zernio_paso_completado',6);goToStep(7)"><span class="btn-bracket">[</span> SIGUIENTE: TU_SISTEMA <span class="btn-bracket">]</span> <span class="btn-arrow">→</span></button>
+        <button class="btn-primary" onclick="track('zernio_paso_completado',6);goToStep(7)"><span class="btn-bracket">[</span> SIGUIENTE: TU SISTEMA <span class="btn-bracket">]</span> <span class="btn-arrow">→</span></button>
       </div>
     </section>
 
     <!-- STEP 7: Tu sistema -->
     <section class="step-panel" id="step7">
       <div class="step-header">
-        <div class="step-phase">[PHASE_07]</div>
-        <h1 class="step-title">TU_SISTEMA</h1>
-        <div class="step-subtitle">// Lo construimos con el framework AZXION dentro de tus cuentas</div>
+        <div class="step-phase">[PASO 7 DE 7]</div>
+        <h1 class="step-title">TU SISTEMA</h1>
+        <div class="step-subtitle">// Lo construimos con el método AZXION dentro de tus cuentas</div>
       </div>
       <div class="step-content">
         <div class="form-grid">
@@ -717,12 +717,12 @@
         </div>
 
         <div class="form-cta">
-          <button class="btn-primary btn-large" type="button" onclick="pedirConstruccion()"><span class="btn-bracket">[</span> CONSTRUYAN_MI_SISTEMA <span class="btn-bracket">]</span></button>
+          <button class="btn-primary btn-large" type="button" onclick="pedirConstruccion()"><span class="btn-bracket">[</span> CONSTRUYAN MI SISTEMA <span class="btn-bracket">]</span></button>
           <p class="form-sent" id="construccionPedida" hidden>✓ Recibido. Tu sistema queda listo en 24 a 48 horas; te avisamos por WhatsApp.</p>
         </div>
 
         <div class="info-card">
-          <div class="info-card__header"><span class="info-title">CUANDO_TE_AVISEMOS</span></div>
+          <div class="info-card__header"><span class="info-title">CUANDO TE AVISEMOS</span></div>
           <div class="info-card__body">
             <div class="video-frame"><div class="video-wrapper" data-video-mp4="videos/05-publicar.mp4"></div></div>
             <ul class="info-list">
@@ -751,7 +751,7 @@
       <span class="footer-logo">[::] AZXION</span>
       <span class="footer-tagline">Infraestructura de Conversión & IA</span>
     </div>
-    <div class="footer-encrypted">© 2026 AZXION_SYS_CORE. ALL.RIGHTS.RESERVED.</div>
+    <div class="footer-encrypted">© 2026 AZXION SYS CORE. ALL.RIGHTS.RESERVED.</div>
   </footer>
 
   <script src="app.js"></script>
