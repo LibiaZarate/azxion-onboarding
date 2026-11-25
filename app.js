@@ -264,11 +264,29 @@ function elegirWhatsapp(opcion) {
   p.hidden = false;
 }
 
+function leerNivel() {
+  const v = (n) => document.querySelector(`input[name="${n}"]:checked`)?.value || null;
+  const vs = (n) => [...document.querySelectorAll(`input[name="${n}"]:checked`)].map(e => e.value);
+  const nivel = Number(v('nivel') || 2);
+  const r = { nivel };
+  if (nivel === 3) r.automatico = { que: vs('n3_que'), cuando: v('n3_cuando'), canales: vs('n3_canal'), arranque_pct: Number(v('arranque')) };
+  if (nivel === 4) r.automatico = { todo: true, pasa_a_persona: vs('n4_pasa'), arranque_pct: Number(v('arranque')) };
+  return r;
+}
+
+function mostrarNivel() {
+  const n = Number(document.querySelector('input[name="nivel"]:checked')?.value || 2);
+  document.getElementById('nivel3').hidden = n !== 3;
+  document.getElementById('nivel4').hidden = n !== 4;
+  document.getElementById('nivelArranque').hidden = n < 3;
+}
+
 function pedirConstruccion() {
   const prefs = leerLocal('azxion_prefs', {});
   prefs.vista = document.getElementById('fVista').value;
   prefs.bi = document.getElementById('fBi').value;
   prefs.deseo = document.getElementById('fDeseo').value.trim();
+  Object.assign(prefs, leerNivel());
   guardarLocal('azxion_prefs', prefs);
   track('listo_para_construir', 7, prefs);
   document.getElementById('construccionPedida').hidden = false;
@@ -309,4 +327,6 @@ document.querySelectorAll('.copiable').forEach(el => el.addEventListener('click'
   try { await navigator.clipboard.writeText(el.dataset.copiar); el.classList.add('copiado'); setTimeout(() => el.classList.remove('copiado'), 1200); } catch (err) {}
 }));
 cargarVideosMp4();
+document.querySelectorAll('input[name="nivel"]').forEach(el => el.addEventListener('change', () => { mostrarNivel(); track('nivel_elegido', 7, { nivel: Number(el.value) }); }));
+mostrarNivel();
 showStep(formCompleted ? 3 : 1);

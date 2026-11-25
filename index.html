@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20261125">
 </head>
 <body>
 
@@ -693,6 +693,44 @@
         <div class="step-subtitle">// Lo construimos con el método AZXION dentro de tus cuentas</div>
       </div>
       <div class="step-content">
+        <div class="niveles">
+          <p class="form-label">¿Cuánto quieres que haga tu sistema por ti?</p>
+          <p class="form-hint">Puedes cambiarlo cuando quieras desde tu tablero.</p>
+          <div class="video-frame"><div class="video-wrapper" data-video-mp4="videos/06-niveles.mp4"></div></div>
+          <label class="nivel-card"><input type="radio" name="nivel" value="1">
+            <span class="nivel-tit">1 · Ver todo claro</span>
+            <span class="nivel-txt">"Quiero ver todos mis mensajes en un solo lugar y saber cómo va mi negocio." Tus mensajes llegan solos a tu tablero, ves quién se está enfriando y cómo va tu meta, y tu ayudante lee todo y te contesta lo que le preguntes.</span></label>
+          <label class="nivel-card"><input type="radio" name="nivel" value="2" checked>
+            <span class="nivel-tit">2 · Que me ayude a contestar <em>(recomendado para empezar)</em></span>
+            <span class="nivel-txt">"Quiero ir más rápido, pero yo decido qué se manda." Tu ayudante te escribe las respuestas y los seguimientos; tú los revisas y los mandas con un clic.</span></label>
+          <label class="nivel-card"><input type="radio" name="nivel" value="3">
+            <span class="nivel-tit">3 · Que conteste solo lo que yo elija</span>
+            <span class="nivel-txt">"Me llegan muchos mensajes y quiero que algunos se contesten solos." Contesta solo lo que tú elijas; lo demás te llega a ti.</span></label>
+          <label class="nivel-card"><input type="radio" name="nivel" value="4">
+            <span class="nivel-tit">4 · Que el agente conteste todo</span>
+            <span class="nivel-txt">"Quiero que mi agente atienda a todos y me pase solo lo que de verdad me necesita." Contesta las 24 horas por todos tus canales, califica, da seguimiento y te pasa el lead listo para cerrar, con el resumen.</span></label>
+
+          <div class="nivel-extra" id="nivel3" hidden>
+            <p class="form-label">¿Qué puede contestar solo?</p>
+            <div class="checks"><label><input type="checkbox" name="n3_que" value="faqs"> Preguntas frecuentes</label><label><input type="checkbox" name="n3_que" value="precios"> Precios</label><label><input type="checkbox" name="n3_que" value="horarios"> Horarios y ubicación</label><label><input type="checkbox" name="n3_que" value="info"> Mandar información o un video</label></div>
+            <p class="form-label">¿Cuándo?</p>
+            <div class="checks"><label><input type="radio" name="n3_cuando" value="siempre" checked> Siempre</label><label><input type="radio" name="n3_cuando" value="fuera_de_horario"> Solo de noche y fines de semana</label></div>
+            <p class="form-label">¿Por dónde?</p>
+            <div class="checks"><label><input type="checkbox" name="n3_canal" value="whatsapp" checked> WhatsApp</label><label><input type="checkbox" name="n3_canal" value="instagram"> Instagram</label><label><input type="checkbox" name="n3_canal" value="facebook"> Facebook</label></div>
+          </div>
+
+          <div class="nivel-extra" id="nivel4" hidden>
+            <p class="form-label">¿Cuándo te pasa una conversación a ti?</p>
+            <div class="checks"><label><input type="checkbox" name="n4_pasa" value="calificado" checked> Cuando el lead está calificado</label><label><input type="checkbox" name="n4_pasa" value="pide_persona" checked> Cuando pide hablar con una persona</label><label><input type="checkbox" name="n4_pasa" value="no_sabe" checked> Cuando pregunta algo que no está en tu información</label><label><input type="checkbox" name="n4_pasa" value="delicado" checked> Cuando hay una queja o algo delicado</label></div>
+          </div>
+
+          <div class="nivel-extra" id="nivelArranque" hidden>
+            <p class="form-label">¿Con cuántos arrancamos?</p>
+            <div class="checks"><label><input type="radio" name="arranque" value="30" checked> 3 de cada 10 y subimos (recomendado)</label><label><input type="radio" name="arranque" value="50"> La mitad</label><label><input type="radio" name="arranque" value="100"> Todos</label></div>
+            <p class="form-hint">Lo que no elijas te llega a ti. Se activa con tu llave de inteligencia artificial, que conectamos juntos en llamada, y antes de soltarlo lo probamos con conversaciones reales. Lo apagas con un botón, o lo pausas con una persona.</p>
+          </div>
+        </div>
+
         <div class="form-grid">
           <div class="form-group">
             <label class="form-label" for="fVista">¿Cómo quieres ver tus ventas?</label>
@@ -754,6 +792,6 @@
     <div class="footer-encrypted">© 2026 AZXION SYS CORE. ALL.RIGHTS.RESERVED.</div>
   </footer>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=20261125"></script>
 </body>
 </html>

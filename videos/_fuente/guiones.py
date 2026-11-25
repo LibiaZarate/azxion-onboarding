@@ -64,3 +64,12 @@ VIDEOS = {
    'Tres: abre tu ayudante y pídele que te explique tu sistema. Desde ahí te puede decir a quién contestar hoy y cómo va tu meta. Ya es tuyo.'),
  ],
 }
+
+VIDEOS['06-niveles'] = [
+  (T('¿Cuánto hace tu sistema por ti?', 'Lo cambias cuando quieras'),
+   'Tu sistema es como tener una recepcionista. Tú decides cuánto hace por ti, y lo puedes cambiar cuando quieras.'),
+  (L('Cuatro niveles', ['1 · Te avisa de todo', '2 · Te deja las respuestas escritas', '3 · Contesta sola lo que tú elijas', '4 · Atiende a todos y te pasa lo importante']),
+   'En el nivel uno, te avisa de todo y ves cómo va tu negocio. En el dos, te deja las respuestas escritas y tú las mandas. En el tres, contesta sola solo lo que tú elijas, como precios o de noche. Y en el cuatro, atiende a todos y te pasa a ti los que ya están listos para comprar.'),
+  (L('Sin sustos', ['Empezamos con pocos y subimos', 'Lo probamos antes de soltarlo', 'Lo apagas con un botón']),
+   'Si eliges el tres o el cuatro, empezamos con pocos y subimos, y lo probamos juntos antes de soltarlo. Si algo no te gusta, lo apagas con un botón. Si no sabes cuál, elige el dos.'),
+]
