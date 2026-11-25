@@ -239,15 +239,24 @@ function guardarLocal(clave, valor) {
 
 function guardarHerramientas() {
   const prefs = leerLocal('azxion_prefs', {});
-  prefs.github_usuario = document.getElementById('fGithubUser').value.trim();
   prefs.ia = document.getElementById('fIaElegida').value;
   guardarLocal('azxion_prefs', prefs);
-  track('herramientas_guardadas', 4, { github_usuario: prefs.github_usuario, ia: prefs.ia });
+  track('herramientas_guardadas', 4, { ia: prefs.ia });
   goToStep(5);
 }
 
+function guardarAcceso() {
+  const prefs = leerLocal('azxion_prefs', {});
+  prefs.github_usuario = document.getElementById('fGithubUser').value.trim().replace(/^@/, '');
+  prefs.repo = document.getElementById('fRepo').value.trim() || 'mi-sistema';
+  guardarLocal('azxion_prefs', prefs);
+  const dados = [...document.querySelectorAll('.acceso-check:checked')].map(el => el.dataset.acceso);
+  track('acceso_confirmado', 5, { github_usuario: prefs.github_usuario, repo: prefs.repo, plataformas: dados });
+  goToStep(6);
+}
+
 function elegirWhatsapp(opcion) {
-  track(opcion, 5);
+  track(opcion, 6);
   const p = document.getElementById('whatsappElegido');
   p.textContent = opcion === 'whatsapp_en_llamada'
     ? '✓ Anotado: conectamos tu WhatsApp juntos en la llamada.'
@@ -255,87 +264,32 @@ function elegirWhatsapp(opcion) {
   p.hidden = false;
 }
 
-function construirInstrucciones() {
-  const r = leerLocal('azxion_form_data', {});
-  const prefs = leerLocal('azxion_prefs', {});
-  const vista = document.getElementById('fVista').value;
-  const bi = document.getElementById('fBi').value;
-  const deseo = document.getElementById('fDeseo').value.trim();
-  const respuestas = Object.entries(r)
-    .filter(([k, v]) => v && !['fecha_envio', 'telefono', 'email'].includes(k))
-    .map(([k, v]) => `- ${k}: ${String(v).replace(/\s+/g, ' ').trim()}`)
-    .join('\n');
-
-  const vistaTxt = {
-    pipeline: 'Pipeline simple: leads por etapa, "qué toca hoy" y seguimientos.',
-    crm: 'CRM completo (contactos, cotizaciones, equipo). Evalúa Odoo Community (https://github.com/odoo/odoo) frente a construirlo dentro de la app; recomiéndame el más simple que cumpla y explícame por qué antes de instalar nada.',
-    'no-se': 'No sé. Recomiéndame entre pipeline simple y CRM completo (tipo Odoo) según mi negocio, y pregúntame antes de decidir.'
-  }[vista];
-  const biTxt = {
-    basico: 'Métricas básicas del embudo: cuántos llegan, cuántos califican, cuántos compran y dónde se pierden.',
-    bi: 'Tableros de inteligencia de negocio con los frameworks y metodologías de BI (como los proyectos de https://github.com/topics/tableau-project): modelo de datos con hechos y dimensiones, KPIs con definición y fuente, cortes por canal, campaña, etapa y vendedor, tendencias y embudo. Constrúyelo en mi app o con una herramienta abierta de BI (Metabase, Apache Superset o similar) conectada a mi Supabase; recomiéndame la más simple y no me inscribas a nada de pago sin preguntarme.',
-    'no-se': 'No sé. Recomiéndame qué métricas me sirven según mi objetivo.'
-  }[bi];
-
-  return `Eres el instalador de mi sistema comercial con el framework AZXION de Libia Zárate.
-Yo no soy técnico: háblame simple, un paso a la vez, y pídeme aprobación antes de crear, publicar o pagar algo. Si algo es muy técnico o falla dos veces, detente y dime "esto lo vemos con Libia".
-
-## Reglas
-- Todo se crea en MIS cuentas (GitHub, Supabase, Vercel, Zernio). Nunca me pidas contraseñas; si necesitas iniciar sesión, guíame para que yo lo haga en el navegador.
-- No guardes llaves ni datos personales de mis clientes dentro del código.
-- No envíes mensajes reales a mis clientes sin que yo apruebe el texto.
-
-## Paso 1 · Plantilla
-Crea en mi GitHub un repositorio PRIVADO a partir de la plantilla LibiaZarate/AZXION-TheFrameWorkOS (${prefs.github_usuario ? 'mi usuario es ' + prefs.github_usuario : 'pregúntame mi usuario'}). Si no tengo acceso a la plantilla, detente y dime: "Pídele a Libia acceso a la plantilla".
-Después lee su CLAUDE.md y sigue la skill skills/instalar-sistema-cliente.
-
-## Paso 2 · Mi segundo cerebro
-Con mis respuestas de abajo, llena CLAUDE.md, client.config.yaml y las carpetas de contexto (negocio, cliente ideal, oferta, arquitectura comercial: etapas, señales de compra, preguntas frecuentes, cuándo entro yo, plazos de seguimiento, lo que nunca se dice). Marca lo que infieras como inferido y pregúntame lo que falte. No inventes reglas comerciales.
-
-## Paso 3 · Mi app
-- Vista de ventas: ${vistaTxt}
-- Métricas: ${biTxt}
-${deseo ? '- Lo que yo quiero: ' + deseo + '\n' : ''}- Base de datos en mi Supabase (crea el proyecto si no existe) y publicación en mi Vercel.
-- Conecta mi Zernio (ya está conectado a este chat) para leer conversaciones de WhatsApp, Instagram y Facebook y llevarlas a mi pipeline.
-
-## Paso 4 · Que tú lo entiendas todo
-Deja el repositorio listo para que cualquier IA que abra después (tú, Claude o Codex) lea primero CLAUDE.md y entienda mi negocio, mi pipeline y mis reglas. Al final enséñame a usarlo con 3 ejemplos: "¿qué toca hoy?", "¿quién se está enfriando?", "resúmeme los nuevos".
-
-## Paso 5 · Acceso para Libia
-Cuando termines, recuérdame invitar a libiagzarate@gmail.com como colaboradora del repositorio y a mi organización de Supabase.
-
-## Mis respuestas del onboarding
-${respuestas || '(no encontré mis respuestas en este navegador; pregúntamelas)'}`;
-}
-
-async function copiarInstrucciones() {
-  const texto = construirInstrucciones();
-  const box = document.getElementById('promptBox');
-  box.value = texto;
+function pedirConstruccion() {
   const prefs = leerLocal('azxion_prefs', {});
   prefs.vista = document.getElementById('fVista').value;
   prefs.bi = document.getElementById('fBi').value;
   prefs.deseo = document.getElementById('fDeseo').value.trim();
   guardarLocal('azxion_prefs', prefs);
-  track('instrucciones_copiadas', 6, { vista: prefs.vista, bi: prefs.bi, deseo: prefs.deseo });
-  try {
-    await navigator.clipboard.writeText(texto);
-    document.getElementById('copiado').hidden = false;
-  } catch (e) {
-    box.hidden = false;
-    box.select();
-  }
+  track('listo_para_construir', 7, prefs);
+  document.getElementById('construccionPedida').hidden = false;
 }
 
-async function copiarCorreo() {
-  const correo = document.getElementById('correoAcceso').textContent;
-  try { await navigator.clipboard.writeText(correo); } catch (e) {}
+async function copiarTexto(id) {
+  const t = document.getElementById(id).textContent;
+  try { await navigator.clipboard.writeText(t); } catch (e) {}
 }
 
-function confirmarAcceso() {
-  const dados = [...document.querySelectorAll('.acceso-check:checked')].map(el => el.dataset.acceso);
-  track('acceso_confirmado', 7, { plataformas: dados });
-  document.getElementById('accesoListo').hidden = false;
+// Videos paso a paso (mp4 propios)
+function cargarVideosMp4() {
+  document.querySelectorAll('.video-wrapper[data-video-mp4]').forEach(w => {
+    const v = document.createElement('video');
+    v.src = w.dataset.videoMp4;
+    v.controls = true; v.preload = 'metadata'; v.playsInline = true;
+    v.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;background:#000;';
+    v.addEventListener('play', () => track('video_play', currentStep, { video: w.dataset.videoMp4 }), { once: true });
+    v.addEventListener('error', () => { w.innerHTML = '<div class="video-pending">[ VIDEO_EN_PREPARACIÓN ]</div>'; });
+    w.appendChild(v);
+  });
 }
 
 // ---- Init ----
@@ -349,5 +303,10 @@ onboardingForm.addEventListener('input', (e) => {
 });
 document.querySelectorAll('[data-track]').forEach(el => el.addEventListener('click', () => track(el.dataset.track)));
 document.querySelectorAll('.tool-check').forEach(el => el.addEventListener('change', () => { if (el.checked) track('cuenta_creada', 4, { herramienta: el.dataset.tool }); }));
-document.querySelectorAll('.acceso-check').forEach(el => el.addEventListener('change', () => { if (el.checked) track('acceso_dado', 7, { plataforma: el.dataset.acceso }); }));
+document.querySelectorAll('.acceso-check').forEach(el => el.addEventListener('change', () => { if (el.checked) track('acceso_dado', 5, { plataforma: el.dataset.acceso }); }));
+document.querySelectorAll('.copiable').forEach(el => el.addEventListener('click', async (e) => {
+  e.preventDefault();
+  try { await navigator.clipboard.writeText(el.dataset.copiar); el.classList.add('copiado'); setTimeout(() => el.classList.remove('copiado'), 1200); } catch (err) {}
+}));
+cargarVideosMp4();
 showStep(formCompleted ? 3 : 1);
