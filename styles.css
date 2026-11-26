@@ -466,3 +466,11 @@ body::after { bottom: 20px; right: 20px; border-width: 0 1px 1px 0; }
 
 /* Lo oculto se queda oculto aunque su clase le ponga display */
 [hidden] { display: none !important; }
+.checks-col { flex-direction: column; gap: 8px; }
+.checks-col label { align-items: flex-start; line-height: 1.4; }
+.checks-col input { margin-top: 3px; flex: none; }
+.sit-tabla { display: grid; gap: 8px; }
+.sit-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 260px); min-width: 0; gap: 10px; align-items: center; font-size: 14px; }
+@media (max-width: 640px) { .sit-row { grid-template-columns: minmax(0, 1fr); gap: 4px; } }
+.sit-row select { width: 100%; min-width: 0; text-overflow: ellipsis; }
+.sit-tabla { min-width: 0; }

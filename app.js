@@ -105,12 +105,32 @@ function showStep(step) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+
+// Lee el formulario completo: las casillas de opción múltiple se guardan como lista
+// (Object.fromEntries se quedaba solo con la última) y un grupo sin marcar se guarda vacío.
+function leerForm(form) {
+  const data = {};
+  for (const el of form.elements) {
+    if (!el.name) continue;
+    if (el.type === 'checkbox') {
+      if (!(el.name in data)) data[el.name] = [];
+      if (el.checked) data[el.name].push(el.value);
+    } else if (el.type === 'radio') {
+      if (el.checked) data[el.name] = el.value;
+      else if (!(el.name in data)) data[el.name] = '';
+    } else if (el.type !== 'submit' && el.type !== 'button') {
+      data[el.name] = el.value;
+    }
+  }
+  return data;
+}
+
 // ---- Form draft (autoguardado en el navegador) ----
 const FORM_DRAFT_KEY = 'azxion_form_draft';
 
 function saveDraft() {
   const form = document.getElementById('onboardingForm');
-  const data = Object.fromEntries(new FormData(form).entries());
+  const data = leerForm(form);
   localStorage.setItem(FORM_DRAFT_KEY, JSON.stringify(data));
 }
 
@@ -125,7 +145,16 @@ function restoreDraft() {
   const form = document.getElementById('onboardingForm');
   Object.entries(draft).forEach(([name, value]) => {
     const field = form.elements[name];
-    if (field && !(field instanceof RadioNodeList)) field.value = value;
+    if (!field) return;
+    const items = field instanceof RadioNodeList ? [...field] : [field];
+    if (items[0].type === 'checkbox') {
+      const marcadas = Array.isArray(value) ? value : [value];
+      items.forEach(i => { i.checked = marcadas.includes(i.value); });
+    } else if (items[0].type === 'radio') {
+      if (value) items.forEach(i => { i.checked = i.value === value; });
+    } else {
+      field.value = value;
+    }
   });
 }
 
@@ -189,7 +218,7 @@ async function handleFormSubmit(event) {
 
   error.hidden = true;
 
-  const data = Object.fromEntries(new FormData(form).entries());
+  const data = leerForm(form);
   data.fecha_envio = new Date().toISOString();
   localStorage.setItem('azxion_form_data', JSON.stringify(data));
 
